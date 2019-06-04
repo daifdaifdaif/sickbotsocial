@@ -1,0 +1,16 @@
+# .gitignore
+__pycache__
+*.jpg
+*.png
+*.pyc
+print_quote.pyc
+*.tar.gz
+printquote-log.txt
+jj-log.txt
+jj-nomention-bot.txt
+jj-chat.txt
+jj.txt
+printed.txt
+chat-quotes.txt
+config.py
+config.pyc
