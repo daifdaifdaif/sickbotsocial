@@ -12,7 +12,7 @@ tw_favs_to_insta.py -> checks for favs & RTs, launches print_quote.py & uploads 
 print_quote.py -> overlays quote on image file 
 
 
-## config.py file:
+## config.py file (_rename & edit config-example.py_)
 ```
 # ftp credentials for automated uploading
 HOST=''
@@ -26,11 +26,11 @@ access_token = ""
 access_secret = ""
 ```
 
-## instagram.php/config.php file (instagram credentials):
+## instagram.php/config.php file (_rename & edit config-example.php_)
+instagram credentials:
 ```
 <?php
 $username = '';
 $password = '';
-
 ?>
 ```
