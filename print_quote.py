@@ -31,35 +31,12 @@ from random import randint
 # GLOBALS
 test=0
 hard_test=0
-corpus_file = "/home/pi/jj-bot/jj-nomention-bot.txt"
 chain_file = "/home/pi/jj-bot/jj.json"
 
 
 x = 50
 y = 30
 
-# VARIABLES FOR QUOTES
-min_length=30
-max_length=120
-min_overlap=0.35
-max_overlap=0.92
-
-## define style
-
-chars_per_line = 15
-
-outline = 1
-outline_color = (255,255,255)
-text_color = (255,255,255)
-text_color2 = (0,0,0)
-
-
-# VARIABLES FOR MIXUP
-rotate = 0.2
-brighten = 0.1
-crop = 0.5
-darken = 0.2
-mirror = 0.2
 
 # setup
 tmp_path ="/home/pi/jj-bot/tmp/"

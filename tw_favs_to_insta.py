@@ -11,9 +11,8 @@ from print_quote import *
 
 # GLOBALS
 printed_tweets_file = "/home/pi/jj-bot/printed.txt"
-bot_id = "1067095466175811586"
+
 posts_to_scan = 50
-like_threshold = 2
 max_posts_to_do_at_once = 2
 
 # CREDENTIALS
@@ -46,9 +45,9 @@ tweets = api.user_timeline(user_id=bot_id, count=posts_to_scan, tweet_mode='exte
 
 for tweet in tweets:
 
-	if tweet.favorite_count > 0:
+	if tweet.favorite_count > 0 or tweet.retweet_count > 0:
 		
-		if tweet.retweet_count > 0:
+		if tweet.retweet_count >= retweet_threshold:
 			post_img = True
 		elif tweet.favorite_count >= like_threshold:
 			post_img = True

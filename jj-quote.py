@@ -12,18 +12,12 @@ import tweepy
 
 # GLOBALS
 test=0
-corpus_file = "/home/pi/jj-bot/jj-nomention-bot.txt"
 chain_file = "/home/pi/jj-bot/jj.json"
 id_file = "/home/pi/jj-bot/id.txt"
-retweet_jj = 1
+
 
 # VARIABLES FOR QUOTES
-min_length=30
-max_length=230
-min_words=5
-max_words=20
-min_overlap=0.35
-max_overlap=0.85
+
 
 
 
@@ -61,14 +55,14 @@ print("logged in")
 i = 0
 
 #AMOUNT OF TWEETS TO GENERATE
-j = randint(1,3)
+j = randint(1,max_tweet_amount)
 
 
 
 # GENERATE TWEETS
 while i < j:
 		
-	k = randint(1,3)	
+	k = randint(markov_state_size_range[0],markov_state_size_range[1])	
 	text_model = markovify.NewlineText(text, state_size=k)
 	
 
@@ -106,7 +100,7 @@ f.close()
 print("last id: " + last_id)
 
 print("reading tweets")
-tweets = api.user_timeline(user_id="878210144827580416", count=20, tweet_mode='extended', since_id=last_id)
+tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended', since_id=last_id)
 print("found " + str(len(tweets)) + " new tweets by @sickbutsocial")
 
 
@@ -123,7 +117,7 @@ for tweet in tweets:
 	
 	
 	if retweet_jj == 1:
-		if "bot" in text:
+		if any(ext in text for ext in trigger_words):
 	
 
 			# TRY TO GENERATE
