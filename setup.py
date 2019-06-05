@@ -14,10 +14,6 @@ with open("README.md", 'r') as f:
 
 
 
-for fname in move:
-    os.rename(fname, directory + fname)
-
-
 setup(name='sickbotsocial',
       version='0.1',
       description='Jessica Jurassica Bot',
