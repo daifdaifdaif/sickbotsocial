@@ -3,3 +3,4 @@
 # Except this file
 !.gitignore
 !config-example.php
+!README.md
