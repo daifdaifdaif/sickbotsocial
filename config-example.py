@@ -14,7 +14,7 @@ id_file = "id.txt"
 printed_tweets_file = "printed.txt"
 
 # CORPUS FILE
-corpus_file = "jj-nomention-bot.txt"
+corpus_file = "jj-nomention.txt"
 chain_file = "jj.json"
 
 # TWEET LENGTH
