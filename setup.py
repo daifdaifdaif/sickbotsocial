@@ -30,3 +30,7 @@ setup(name='sickbotsocial',
       install_requires=install_requires,
       include_package_data=True,
       zip_safe=False)
+    
+old_name = os.path.join(thelibfolder, "config-example.py")
+new_name = os.path.join(thelibfolder, "config.py")  
+os.rename(old_name, new_name)
