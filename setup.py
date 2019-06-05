@@ -42,4 +42,4 @@ os.rename(old_name, new_name)
 
 img_path = os.path.join(thelibFolder, "insta-pics/empty.jpg")  
 img = Image.new('RGB', (800,800), (255, 255, 255))
-img.save(img_path, "JPG")
+img.save(img_path, "JPEG")
