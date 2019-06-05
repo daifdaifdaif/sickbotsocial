@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 
-import os
+import os, errno
+
 thelibFolder = os.path.dirname(os.path.realpath(__file__))
 requirementPath = thelibFolder + '/requirements.txt'
 install_requires = [] 
@@ -10,6 +11,21 @@ if os.path.isfile(requirementPath):
 
 with open("README.md", 'r') as f:
     long_description = f.read()
+
+# create directory
+directory = 'sickbotsocial/'
+try:
+    os.makedirs(directory)
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        raise
+
+# move important files
+move = [ ... ]
+
+for fname in move:
+    os.rename(fname, directory + fname)
+
 
 setup(name='sickbotsocial',
       version='0.1',
@@ -26,8 +42,7 @@ setup(name='sickbotsocial',
       author='DAIF',
       author_email='daif@dieyungenhuren.hiv',
       license='MIT',
-      packages = [''],
-	  package_dir = {'': ''},
+      packages = ['sickbotsocial'],
       install_requires=install_requires,
       include_package_data=True,
       zip_safe=False)
