@@ -10,12 +10,12 @@ back_path = "insta-pics/"
 script_story = "instagram-php/uploadJJ.php"
 script2 = "instagram-php/uploadJJPost.php"
 
-id_file = "id.txt"
+id_file = "tmp/id.txt"
 printed_tweets_file = "printed.txt"
 
 # CORPUS FILE
-corpus_file = "jj-nomention.txt"
-chain_file = "jj.json"
+corpus_file = "corpus/jj-nomention.txt"
+chain_file = "corpus/jj.json"
 
 # TWEET LENGTH
 min_length=30
