@@ -16,7 +16,9 @@ ______
 #### config:
 online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (set `test=0` to enable). twitter API keys, and an instagram account is necessary for these features.
 
-- setup `config.py` file (edit&rename `config-example.py`)
+- clone github repo
+- install requirements `pip install -r requirements.txt`
+- setup `config.py` file (edit and rename `config-example.py`)
 - add .jpg images to folder `insta-pics/`
 - run `python jj-quote.py`
 
@@ -33,5 +35,5 @@ ________
 - `Pillow==6.0.0`
 
 #### additional requirements for instagram functionality
-- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `instagram-php/config.php` file)
+- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `config.php` file)
 
