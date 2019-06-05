@@ -21,10 +21,13 @@ online functionality (reading new tweets, tweeting, crossposting to instagram) i
 - add .jpg images to folder `insta-pics/`
 - run `python jj-quote.py`
 
-#### requirements: 
+#### python requirements: 
 - `tweepy==3.6.0`
 - `markovify==0.7.1`
 - `Pillow==6.0.0`
+
+#### additional requirements
+- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php)
 
 #### modules:
 - `jj-quote.py` - *main generator*
