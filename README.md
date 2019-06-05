@@ -36,9 +36,9 @@ _________
 #### python requirements: 
 runs on python 2.7
 
-- `tweepy==3.6.0`
-- `markovify==0.7.1`
-- `Pillow==6.0.0`
+- [`tweepy==3.6.0`](https://github.com/tweepy/tweepy)
+- [`markovify==0.7.1`](https://github.com/jsvine/markovify/)
+- [`Pillow==6.0.0`](https://github.com/python-pillow/Pillow)
 
 #### additional requirements for instagram functionality
 - [Instagram PHP](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `config.php` file)
