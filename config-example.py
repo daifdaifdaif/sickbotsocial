@@ -1,5 +1,5 @@
 # set to 1 to disable online functionality and just generate tweet + picture
-test=0
+test=1
 
 # CORPUS FILE
 corpus_file = "/home/pi/jj-bot/jj-nomention.txt"
