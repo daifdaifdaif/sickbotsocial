@@ -13,6 +13,14 @@ twitter bot that generates quotes in the style of [Jessica Jurassica](http://www
 
 ______
 
+#### modules:
+- `jj-quote.py` - *main*
+- `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
+- `print_quote.py` - *overlays quote on image file*
+
+_________
+
+
 #### config:
 multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `test=0` to enable). twitter API keys, and an instagram account is necessary for these features.
 
@@ -22,14 +30,12 @@ multiple parameters can be edited in `config.py`. online functionality (reading 
 4. add .jpg images to folder `insta-pics/`
 5. run `python jj-quote.py`
 
-#### modules:
-- `jj-quote.py` - *main*
-- `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
-- `print_quote.py` - *overlays quote on image file*
+_________
 
-________
 
 #### python requirements: 
+runs on python 2.7
+
 - `tweepy==3.6.0`
 - `markovify==0.7.1`
 - `Pillow==6.0.0`
