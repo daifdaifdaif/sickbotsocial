@@ -3,19 +3,19 @@ test=1
 
 # PATHS
 
-tmp_path ="tmp/"
-out_path = "output/"
-back_path = "insta-pics/"
+tmp_path ="../tmp/"
+out_path = "../output/"
+back_path = "../insta-pics/"
 
-script_story = "instagram-php/uploadJJ.php"
-script2 = "instagram-php/uploadJJPost.php"
+script_story = "../instagram-php/uploadJJ.php"
+script2 = "../instagram-php/uploadJJPost.php"
 
-id_file = "tmp/id.txt"
-printed_tweets_file = "printed.txt"
+id_file = "../tmp/id.txt"
+printed_tweets_file = "../printed.txt"
 
 # CORPUS FILE
-corpus_file = "corpus/jj-nomention.txt"
-chain_file = "corpus/jj.json"
+corpus_file = "../corpus/jj-nomention.txt"
+chain_file = "../corpus/jj.json"
 
 # TWEET LENGTH
 min_length=30
