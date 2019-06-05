@@ -164,7 +164,7 @@ def main_printer(tweet=None, story=True, post=False):
 		if entry.endswith(".jpg"):
 			template_files.append(back_path + entry)
 
-	template_file = template_files[random.randint(1,(len(template_files)-1))]
+	template_file = template_files[random.randint(0,(len(template_files)-1))]
 	
 	# open ftp session
 	try:
