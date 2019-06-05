@@ -1,0 +1,6 @@
+include README.md
+include *.txt
+include LICENSE
+recursive-include insta-pics
+recursive-include output
+recursive-include tmp
