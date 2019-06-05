@@ -1,4 +1,6 @@
 from setuptools import setup
+from PIL import Image
+
 
 import os
 
@@ -37,3 +39,7 @@ setup(name='sickbotsocial',
 old_name = os.path.join(thelibFolder, "sickbotsocial/config-example.py")
 new_name = os.path.join(thelibFolder, "sickbotsocial/config.py")  
 os.rename(old_name, new_name)
+
+img_path = os.path.join(thelibFolder, "insta-pics/empty.jpg")  
+img = Image.new('RGB', (800,800), (255, 255, 255))
+img.save(img_path, "JPG")

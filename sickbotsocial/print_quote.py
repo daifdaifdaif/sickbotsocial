@@ -108,7 +108,10 @@ def print_quote(s, template_file, story=True, font_size=90):
 			
 		print("long quote detected")
 	
-	font = ImageFont.truetype(font_file, font_size, encoding="unic")
+	try:
+		font = ImageFont.truetype(font_file, font_size, encoding="unic")
+	except:
+		print("error loading font. check config.py and edit font_file path")
 	
 	
 	content = textwrap.wrap(s, width=chars_per_line,break_long_words=False)
@@ -233,8 +236,10 @@ def main_printer(tweet=None, story=True, post=False):
 		
 
 	
-	
-	session.quit()
+	try:
+		session.quit()
+	except:
+		print("ftp failure")
 	
 	print("Finished")
 
