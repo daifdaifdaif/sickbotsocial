@@ -9,7 +9,7 @@ ______
 [instagram](http://www.instagram.com/sickbotsocial/) |
 [image archive](http://www.dieyungenhuren.hiv/sickbotsocial/img/)
 
-twitter bot that generates quotes in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/). any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
+twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
 ______
 
