@@ -49,7 +49,7 @@ retweet_threshold = 1
 chars_per_line = 15
 
 # INSTAGRAM FONT STYLE
-font_file = "fonts/SF-Pro-Display-Semibold.otf"
+font_file = "/Library/Fonts/Arial.ttf"
 outline = 1
 outline_color = (255,255,255)
 text_color = (255,255,255)
