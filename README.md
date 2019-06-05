@@ -35,5 +35,5 @@ ________
 - `Pillow==6.0.0`
 
 #### additional requirements for instagram functionality
-- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `config.php` file)
+- [Instagram PHP](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `config.php` file)
 
