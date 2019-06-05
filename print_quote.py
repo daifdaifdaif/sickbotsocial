@@ -29,9 +29,7 @@ from random import randint
 
 
 # GLOBALS
-test=0
 hard_test=0
-chain_file = "/home/pi/jj-bot/jj.json"
 
 
 x = 50

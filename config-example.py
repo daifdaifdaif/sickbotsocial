@@ -1,5 +1,10 @@
+# set to 1 to disable online functionality and just generate tweet + picture
+test=0
+
 # CORPUS FILE
 corpus_file = "/home/pi/jj-bot/jj-nomention.txt"
+chain_file = "/home/pi/jj-bot/jj.json"
+
 
 # TWEET LENGTH
 min_length=30

@@ -4,6 +4,8 @@ import sys
 import re
 
 from config import *
+from print_quote import *
+
 
 import random
 from random import randint
@@ -11,17 +13,8 @@ from random import randint
 import tweepy
 
 # GLOBALS
-test=0
-chain_file = "/home/pi/jj-bot/jj.json"
+
 id_file = "/home/pi/jj-bot/id.txt"
-
-
-# VARIABLES FOR QUOTES
-
-
-
-
-# CREDENTIALS
 
 
 # CHECK WHETHER WE'RE LIVE
@@ -42,20 +35,23 @@ with open (corpus_file) as f:
 
 
 #TWITTER LOGIN
+if test == 0:
+	print("logging in")	
+	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)    
+	auth.set_access_token(access_token, access_secret)
+	api = tweepy.API(auth)
 
-print("logging in")	
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)    
-auth.set_access_token(access_token, access_secret)
-api = tweepy.API(auth)
-
-print("logged in")
+	print("logged in")
 
 
 
 i = 0
 
 #AMOUNT OF TWEETS TO GENERATE
-j = randint(1,max_tweet_amount)
+if test == 0:
+	j = randint(1,max_tweet_amount)
+else:
+	j = 1
 
 
 
@@ -86,6 +82,7 @@ while i < j:
 	else:
 		
 		print(tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
+		main_printer(tweet, story=False, post=False)
 	i += 1
 	
 f.close();
@@ -93,57 +90,57 @@ print("Finished")
 
 
 # ADD RECENT JJ TWEETS TO CORPUS
-
-f = open(id_file,"r+")
-last_id = f.readline()
-f.close()
-print("last id: " + last_id)
-
-print("reading tweets")
-tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended', since_id=last_id)
-print("found " + str(len(tweets)) + " new tweets by @sickbutsocial")
-
-
-for tweet in tweets:
-
-	# CLEAN UP
-	
-	text = re.sub(r'@\S*', "", tweet.full_text)
-	text = re.sub(r'http\S*', "", text)
-	text = re.sub(r'  ', " ", text)
-	text = re.sub(r'RT', "", text)
-	
-	# RETWEET JJs TWEETS ABOUT ME <3 
-	
-	
-	if retweet_jj == 1:
-		if any(ext in text for ext in trigger_words):
-	
-
-			# TRY TO GENERATE
-			answer = None
-			while answer == None:
-				while " ich " not in str(answer):
-					length = randint(min_words,max_words)
-					overlap = random.uniform(min_overlap,max_overlap)
-					answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
-			answer = "@sickbutsocial " + answer
-			if test == 0:
-				api.update_status(answer,tweet.id)
-				api.create_favorite(tweet.id)
-	
-	
-	
-	if test == 0:
-		f = open(corpus_file,"a")
-		f.write(text.encode('utf-8') + "\n")
-		f.close()
-
-
-#  WRITE LAST CHECKED TWEET ID TO FILE
-if len(tweets) > 0:
-	#if test == 0:
-	f = open(id_file,"w")
-	f.write(str(tweets[0].id))
+if test == 0:
+	f = open(id_file,"r+")
+	last_id = f.readline()
 	f.close()
+	print("last id: " + last_id)
+
+	print("reading tweets")
+	tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended', since_id=last_id)
+	print("found " + str(len(tweets)) + " new tweets by @sickbutsocial")
+
+
+	for tweet in tweets:
+
+		# CLEAN UP
+	
+		text = re.sub(r'@\S*', "", tweet.full_text)
+		text = re.sub(r'http\S*', "", text)
+		text = re.sub(r'  ', " ", text)
+		text = re.sub(r'RT', "", text)
+	
+		# RETWEET JJs TWEETS ABOUT ME <3 
+	
+	
+		if retweet_jj == 1:
+			if any(ext in text for ext in trigger_words):
+	
+
+				# TRY TO GENERATE
+				answer = None
+				while answer == None:
+					while " ich " not in str(answer):
+						length = randint(min_words,max_words)
+						overlap = random.uniform(min_overlap,max_overlap)
+						answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
+				answer = "@sickbutsocial " + answer
+				if test == 0:
+					api.update_status(answer,tweet.id)
+					api.create_favorite(tweet.id)
+	
+	
+	
+		if test == 0:
+			f = open(corpus_file,"a")
+			f.write(text.encode('utf-8') + "\n")
+			f.close()
+
+
+	#  WRITE LAST CHECKED TWEET ID TO FILE
+	if len(tweets) > 0:
+		#if test == 0:
+		f = open(id_file,"w")
+		f.write(str(tweets[0].id))
+		f.close()
 	
