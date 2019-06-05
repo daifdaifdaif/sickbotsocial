@@ -29,4 +29,4 @@ online functionality (reading new tweets, tweeting, crossposting to instagram) i
 #### modules:
 - `jj-quote.py` - *main generator*
 - `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
-- `print_quote.py` - *overlays quote on image file *
+- `print_quote.py` - *overlays quote on image file*
