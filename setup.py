@@ -1,6 +1,6 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
-import os, errno
+import os
 
 thelibFolder = os.path.dirname(os.path.realpath(__file__))
 requirementPath = thelibFolder + '/requirements.txt'
@@ -12,16 +12,7 @@ if os.path.isfile(requirementPath):
 with open("README.md", 'r') as f:
     long_description = f.read()
 
-# create directory
-directory = 'sickbotsocial/'
-try:
-    os.makedirs(directory)
-except OSError as e:
-    if e.errno != errno.EEXIST:
-        raise
 
-# move important files
-move = [ ... ]
 
 for fname in move:
     os.rename(fname, directory + fname)
@@ -47,6 +38,6 @@ setup(name='sickbotsocial',
       include_package_data=True,
       zip_safe=False)
     
-old_name = os.path.join(thelibfolder, "config-example.py")
-new_name = os.path.join(thelibfolder, "config.py")  
+old_name = os.path.join(thelibfolder, "sickbotsocial/config-example.py")
+new_name = os.path.join(thelibfolder, "sickbotsocial/config.py")  
 os.rename(old_name, new_name)
