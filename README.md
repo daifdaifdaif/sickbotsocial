@@ -1,13 +1,17 @@
-## sickbotsocial
+### sickbotsocial
+______
 
 [logo]: http://www.dieyungenhuren.hiv/sickbotsocial/ava.jpg "sickbotsocial"
+
 [www.dieyungenhuren.hiv/sickbotsocial/](http://www.dieyungenhuren.hiv/sickbotsocial)
-[www.twitter.com/sickbotsocial/](twitter)
-[www.instagram.com/sickbotsocial/](instagram)
-[www.dieyungenhuren.hiv/sickbotsocial/img/](image archive)
+
+[twitter](www.twitter.com/sickbotsocial/) | 
+[instagram](www.instagram.com/sickbotsocial/) |
+[image archive](www.dieyungenhuren.hiv/sickbotsocial/img/e)
 
 twitter bot that generates quotes in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/). any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
+______
 
 #### installation:
 online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (edit `test=0` to enable). twitter API keys, and an instagram login is necessary for these features.
