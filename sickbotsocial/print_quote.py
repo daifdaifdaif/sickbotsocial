@@ -166,8 +166,15 @@ def main_printer(tweet=None, story=True, post=False):
 	for entry in listOfFiles:
 		if entry.endswith(".jpg"):
 			template_files.append(back_path + entry)
-
-	template_file = template_files[random.randint(0,(len(template_files)-1))]
+	
+	# if none available make black file
+	if not template_files:
+		img = Image.new('RGB', (800,800), (255, 255, 255))
+		img_path = back_path+"black.jpg"
+		img.save(img_path, "JPEG")
+		template_file = img_path
+	else:
+		template_file = template_files[random.randint(0,(len(template_files)-1))]
 	
 	# open ftp session
 	try:
