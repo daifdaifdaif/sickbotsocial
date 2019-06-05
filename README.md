@@ -5,9 +5,9 @@ ______
 
 [www.dieyungenhuren.hiv](http://www.dieyungenhuren.hiv/)
 
-[twitter](www.twitter.com/sickbotsocial/) | 
-[instagram](www.instagram.com/sickbotsocial/) |
-[image archive](www.dieyungenhuren.hiv/sickbotsocial/img/e)
+[twitter](http://www.twitter.com/sickbotsocial/) | 
+[instagram](http://www.instagram.com/sickbotsocial/) |
+[image archive](http://www.dieyungenhuren.hiv/sickbotsocial/img/e)
 
 twitter bot that generates quotes in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/). any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
