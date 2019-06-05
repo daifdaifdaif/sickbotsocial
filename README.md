@@ -26,8 +26,7 @@ online functionality (reading new tweets, tweeting, crossposting to instagram) i
 - `Pillow==6.0.0`
 
 #### additional requirements for instagram functionality
-- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php)
-- setup `instagram-php/config.php` file (edit&rename `config-example.php`)
+- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `instagram-php/config.php` file)
 
 #### modules:
 - `jj-quote.py` - *main generator*
