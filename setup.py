@@ -34,6 +34,6 @@ setup(name='sickbotsocial',
       include_package_data=True,
       zip_safe=False)
     
-old_name = os.path.join(thelibfolder, "sickbotsocial/config-example.py")
-new_name = os.path.join(thelibfolder, "sickbotsocial/config.py")  
+old_name = os.path.join(thelibFolder, "sickbotsocial/config-example.py")
+new_name = os.path.join(thelibFolder, "sickbotsocial/config.py")  
 os.rename(old_name, new_name)
