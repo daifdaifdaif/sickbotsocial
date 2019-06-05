@@ -12,9 +12,6 @@ from random import randint
 
 import tweepy
 
-# GLOBALS
-
-id_file = "/home/pi/jj-bot/id.txt"
 
 
 # CHECK WHETHER WE'RE LIVE

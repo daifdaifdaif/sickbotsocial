@@ -1,8 +1,20 @@
 # set to 1 to disable online functionality and just generate tweet + picture
 test=1
 
+# PATHS
+
+tmp_path ="/home/pi/jj-bot/tmp/"
+out_path = "/home/pi/jj-bot/output/"
+back_path = "/home/pi/jj-bot/insta-pics/"
+
+script_story = "/home/pi/jj-bot/instagram-php/uploadJJ.php"
+script2 = "/home/pi/jj-bot/instagram-php/uploadJJPost.php"
+
+id_file = "/home/pi/jj-bot/id.txt"
+printed_tweets_file = "/home/pi/jj-bot/printed.txt"
+
 # CORPUS FILE
-corpus_file = "/home/pi/jj-bot/jj-nomention.txt"
+corpus_file = "/home/pi/jj-bot/jj-nomention-bot.txt"
 chain_file = "/home/pi/jj-bot/jj.json"
 
 
@@ -18,7 +30,6 @@ max_words=20
 min_overlap=0.35
 max_overlap=0.85
 markov_state_size_range=[1,3]
-
 
 # TWITTER USER IDS
 jj_user_id="878210144827580416"
@@ -39,6 +50,7 @@ retweet_threshold = 1
 chars_per_line = 15
 
 # INSTAGRAM FONT STYLE
+font_file = "/home/pi/fonts/SF-Pro-Display-Semibold.otf"
 outline = 1
 outline_color = (255,255,255)
 text_color = (255,255,255)

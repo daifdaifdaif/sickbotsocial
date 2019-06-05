@@ -10,7 +10,6 @@ from print_quote import *
 
 
 # GLOBALS
-printed_tweets_file = "/home/pi/jj-bot/printed.txt"
 posts_to_scan = 50
 max_posts_to_do_at_once = 2
 

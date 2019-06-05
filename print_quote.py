@@ -31,18 +31,11 @@ from random import randint
 # GLOBALS
 hard_test=0
 
-
+# font offset
 x = 50
 y = 30
 
 
-# setup
-tmp_path ="/home/pi/jj-bot/tmp/"
-out_path = "/home/pi/jj-bot/output/"
-back_path = "/home/pi/jj-bot/insta-pics/"
-
-script_story = "/home/pi/jj-bot/instagram-php/uploadJJ.php"
-script2 = "/home/pi/jj-bot/instagram-php/uploadJJPost.php"
 
 
 
@@ -115,7 +108,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 			
 		print("long quote detected")
 	
-	font = ImageFont.truetype("/home/pi/fonts/SF-Pro-Display-Semibold.otf", font_size, encoding="unic")
+	font = ImageFont.truetype(font_file, font_size, encoding="unic")
 	
 	
 	content = textwrap.wrap(s, width=chars_per_line,break_long_words=False)
