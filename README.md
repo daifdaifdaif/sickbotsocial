@@ -25,10 +25,10 @@ _________
 multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `test=0` to enable). twitter API keys and an instagram account are necessary for these features.
 
 1. clone github repo
-2. install requirements: `pip install -r requirements.txt`
-3. setup `config.py` file (edit and rename `config-example.py`)
-4. add .jpg images to folder `insta-pics/`
-5. run `python jj-quote.py`
+2. run install: `python setup.py install`
+3. setup `config.py` file (add path to font file `font_file=""`)
+4. *add .jpg images to folder `insta-pics/` (optional)*
+5. run `cd sickbotsocial && python jj-quote.py`
 
 _________
 
