@@ -13,11 +13,10 @@ twitter bot that generates quotes in the style of [Jessica Jurassica](http://www
 
 ______
 
-#### installation:
-online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (edit `test=0` to enable). twitter API keys, and an instagram login is necessary for these features.
+#### config:
+online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (set `test=0` to enable). twitter API keys, and an instagram account is necessary for these features.
 
 - setup `config.py` file (edit&rename `config-example.py`)
-- setup `instagram-php/config.php` file (edit&rename `config-example.php`)
 - add .jpg images to folder `insta-pics/`
 - run `python jj-quote.py`
 
@@ -26,8 +25,8 @@ online functionality (reading new tweets, tweeting, crossposting to instagram) i
 - `markovify==0.7.1`
 - `Pillow==6.0.0`
 
-#### additional requirements
-- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php)
+#### additional requirements for instagram functionality
+- [Instagram PHP==6.0.1](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `instagram-php/config.php` file)
 
 #### modules:
 - `jj-quote.py` - *main generator*
