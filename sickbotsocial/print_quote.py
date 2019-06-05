@@ -161,7 +161,7 @@ def main_printer(tweet=None, story=True, post=False):
 	template_files = []
 	listOfFiles = os.listdir(back_path) 
 	for entry in listOfFiles:
-		if file.endswith(".jpg"):
+		if entry.endswith(".jpg"):
 			template_files.append(back_path + entry)
 
 	template_file = template_files[random.randint(1,(len(template_files)-1))]
