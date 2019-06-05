@@ -3,20 +3,19 @@ test=1
 
 # PATHS
 
-tmp_path ="/home/pi/jj-bot/tmp/"
-out_path = "/home/pi/jj-bot/output/"
-back_path = "/home/pi/jj-bot/insta-pics/"
+tmp_path ="tmp/"
+out_path = "output/"
+back_path = "insta-pics/"
 
-script_story = "/home/pi/jj-bot/instagram-php/uploadJJ.php"
-script2 = "/home/pi/jj-bot/instagram-php/uploadJJPost.php"
+script_story = "instagram-php/uploadJJ.php"
+script2 = "instagram-php/uploadJJPost.php"
 
-id_file = "/home/pi/jj-bot/id.txt"
-printed_tweets_file = "/home/pi/jj-bot/printed.txt"
+id_file = "id.txt"
+printed_tweets_file = "printed.txt"
 
 # CORPUS FILE
-corpus_file = "/home/pi/jj-bot/jj-nomention-bot.txt"
-chain_file = "/home/pi/jj-bot/jj.json"
-
+corpus_file = "jj-nomention-bot.txt"
+chain_file = "jj.json"
 
 # TWEET LENGTH
 min_length=30
@@ -50,7 +49,7 @@ retweet_threshold = 1
 chars_per_line = 15
 
 # INSTAGRAM FONT STYLE
-font_file = "/home/pi/fonts/SF-Pro-Display-Semibold.otf"
+font_file = "fonts/SF-Pro-Display-Semibold.otf"
 outline = 1
 outline_color = (255,255,255)
 text_color = (255,255,255)
