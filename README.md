@@ -22,7 +22,7 @@ _________
 
 
 #### config:
-multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `test=0` to enable). twitter API keys, and an instagram account is necessary for these features.
+multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `test=0` to enable). twitter API keys and an instagram account are necessary for these features.
 
 1. clone github repo
 2. install requirements: `pip install -r requirements.txt`
