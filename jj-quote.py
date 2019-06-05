@@ -117,10 +117,10 @@ if test == 0:
 				# TRY TO GENERATE
 				answer = None
 				while answer == None:
-					while " ich " not in str(answer):
-						length = randint(min_words,max_words)
-						overlap = random.uniform(min_overlap,max_overlap)
-						answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
+				
+					length = randint(min_words,max_words)
+					overlap = random.uniform(min_overlap,max_overlap)
+					answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
 				answer = "@sickbutsocial " + answer
 				if test == 0:
 					api.update_status(answer,tweet.id)
