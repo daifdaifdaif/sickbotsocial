@@ -16,11 +16,11 @@ ______
 #### config:
 online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (set `test=0` to enable). twitter API keys, and an instagram account is necessary for these features.
 
-- clone github repo
-- install requirements `pip install -r requirements.txt`
-- setup `config.py` file (edit and rename `config-example.py`)
-- add .jpg images to folder `insta-pics/`
-- run `python jj-quote.py`
+1. clone github repo
+2. install requirements: `pip install -r requirements.txt`
+3. setup `config.py` file (edit and rename `config-example.py`)
+4. add .jpg images to folder `insta-pics/`
+5. run `python jj-quote.py`
 
 #### modules:
 - `jj-quote.py` - *main*
