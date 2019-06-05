@@ -4,10 +4,10 @@
 
 twitter bot that generates quotes in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/). any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
-has to be run periodically (e.g. once per hour via crontab).
-
 
 #### installation:
+online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled in config (edit `test=0` to enable). twitter API keys, and an instagram login is necessary for these features.
+
 - setup `config.py` file (edit&rename `config-example.py`)
 - setup `instagram-php/config.php` file (edit&rename `config-example.php`)
 - add .jpg images to folder `insta-pics/`
