@@ -39,7 +39,8 @@ tweets = api.user_timeline(user_id=bot_id, count=posts_to_scan, tweet_mode='exte
 
 for tweet in tweets:
 
-	if tweet.favorite_count > 0 or tweet.retweet_count > 0:
+# rt alleine zählt nicht wegen hurensohn bot
+	if tweet.favorite_count > 0 :
 		
 		if tweet.retweet_count >= retweet_threshold:
 			post_img = True
