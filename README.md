@@ -1,5 +1,9 @@
 ### sickbotsocial
-______
+```
+it girl bot ///////// / 
+underground literatin / kunstfigur ///////// ///////// 
+virtual art performance ///////// 
+```
 
 [logo]: http://www.dieyungenhuren.hiv/sickbotsocial/ava.jpg "sickbotsocial"
 
