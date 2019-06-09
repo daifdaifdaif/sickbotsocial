@@ -25,7 +25,7 @@ if total > 1:
 
 
 
-#GENERATE MODEL
+#LOAD CORPUS TEXT FILE
 print("reading corpus: "+corpus_file)
 with open (corpus_file) as f:
 	text = f.read()
@@ -42,15 +42,16 @@ if test == 0:
 
 
 
-i = 0
 
-#AMOUNT OF TWEETS TO GENERATE
+# SET AMOUNT OF TWEETS TO GENERATE
 if test == 0:
 	j = randint(1,max_tweet_amount)
 else:
 	j = 1
 
 
+
+i = 0
 
 # GENERATE TWEETS
 while i < j:
