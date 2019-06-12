@@ -28,14 +28,16 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_secret)
 api = tweepy.API(auth)
 
-print("logged in")
 
 amt_posted = 0
 
 # READING TWEETS
-
-print("reading tweets")
-tweets = api.user_timeline(user_id=bot_id, count=posts_to_scan, tweet_mode='extended')
+try:
+	tweets = api.user_timeline(user_id=bot_id, count=posts_to_scan, tweet_mode='extended')
+	print("log in worked")
+	print("reading tweets")
+except:
+	print("problem reading tweets. enter credentials in config.py")
 
 for tweet in tweets:
 
