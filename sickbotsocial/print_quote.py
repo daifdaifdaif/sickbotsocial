@@ -44,7 +44,6 @@ y = 30
 def mixup_img(img):
 	img = ImageEnhance.Brightness(img).enhance(0.9)
 	if random.random() < rotate:
-		print("rotate image")
 		x = random.random()
 		if x < 0.3:
 			img = img.rotate(90)
@@ -54,24 +53,20 @@ def mixup_img(img):
 			img = img.rotate(270)
 	
 	if random.random() < brighten:
-		print("brighten image")
 		img = ImageEnhance.Brightness(img).enhance(1.1)
 	
 	if random.random() < darken:
-		print("darken image")
 		img = ImageEnhance.Brightness(img).enhance(0.9)
 		
 	if random.random() < mirror:
-		print("flip image")
 		img = img.transpose(Image.FLIP_LEFT_RIGHT)
 		
 	if random.random() < crop:
-		print("zoom image")
 		w = random.randint(100,450)
 		h = random.randint(650,1000)
 		img.crop((w,w,h,h))
 		img = img.resize((1080,1080))
-		
+	
 	return(img)
 
 
