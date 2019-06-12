@@ -37,7 +37,7 @@ try:
 	print("log in worked")
 	print("reading tweets")
 except:
-	print("problem reading tweets. enter credentials in config.py")
+	print("problem reading tweets. enter credentials in config.py and check your twitter API key.")
 
 for tweet in tweets:
 
