@@ -100,15 +100,7 @@ if test == 0:
 
 	for tweet in tweets:
 
-		# CLEAN UP
-	
-		text = re.sub(r'@\S*', "", tweet.full_text)
-		text = re.sub(r'http\S*', "", text)
-		text = re.sub(r'  ', " ", text)
-		text = re.sub(r'RT', "", text)
-	
 		# RETWEET JJs TWEETS ABOUT ME <3 
-	
 	
 		if retweet_jj == 1:
 			if any(ext in text for ext in trigger_words):
@@ -128,6 +120,15 @@ if test == 0:
 	
 	
 	
+
+		# CLEAN UP
+	
+		text = re.sub(r'@\S*', "", tweet.full_text)
+		text = re.sub(r'http\S*', "", text)
+		text = re.sub(r'  ', " ", text)
+		text = re.sub(r'RT', "", text)
+	
+		
 		if test == 0:
 			f = open(corpus_file,"a")
 			f.write(text.encode('utf-8') + "\n")
