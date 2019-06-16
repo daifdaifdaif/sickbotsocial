@@ -44,7 +44,6 @@ y = 30
 def mixup_img(img):
 	img = ImageEnhance.Brightness(img).enhance(0.9)
 	if random.random() < rotate:
-		print("rotate image")
 		x = random.random()
 		if x < 0.3:
 			img = img.rotate(90)
@@ -54,31 +53,26 @@ def mixup_img(img):
 			img = img.rotate(270)
 	
 	if random.random() < brighten:
-		print("brighten image")
 		img = ImageEnhance.Brightness(img).enhance(1.1)
 	
 	if random.random() < darken:
-		print("darken image")
 		img = ImageEnhance.Brightness(img).enhance(0.9)
 		
 	if random.random() < mirror:
-		print("flip image")
 		img = img.transpose(Image.FLIP_LEFT_RIGHT)
 		
 	if random.random() < crop:
-		print("zoom image")
 		w = random.randint(100,450)
 		h = random.randint(650,1000)
 		img.crop((w,w,h,h))
 		img = img.resize((1080,1080))
-		
+	
 	return(img)
 
 
 def print_quote(s, template_file, story=True, font_size=90):
 
-	print "\nprint_quote()"
-	print "quote to print: " + s
+	print "\nprint_quote(): overlaying quote on image file"
 	
 	if len(s) <= 1:
 		return False
@@ -88,7 +82,6 @@ def print_quote(s, template_file, story=True, font_size=90):
 
 	
 	random.seed(time.clock())
-	print "Chosen template: " + template_file
 	
 
 	s = s.decode('utf-8')
@@ -106,7 +99,6 @@ def print_quote(s, template_file, story=True, font_size=90):
 		else:
 			font_size = font_size - 20
 			
-		print("long quote detected")
 	
 	try:
 		font = ImageFont.truetype(font_file, font_size, encoding="unic")
@@ -147,8 +139,8 @@ def print_quote(s, template_file, story=True, font_size=90):
 		img2 = Image.new("RGB", (1080,1920), color = 'white')
 		img2.paste(img, (0,420))
 		img2.save(out_file_story)
-
 	img.save(out_file)
+	print("saved image: " + out_file)
 
 
 	return out_file, out_file_story, out_file_name
@@ -188,7 +180,7 @@ def main_printer(tweet=None, story=True, post=False):
 	# generate text if not
 	if tweet == None:
 
-
+		print("no text supplied. generating tweet")
 		print("reading corpus: "+corpus_file)
 		with open (corpus_file) as f:
 			text = f.read()
@@ -208,8 +200,9 @@ def main_printer(tweet=None, story=True, post=False):
 			overlap = random.uniform(min_overlap,max_overlap)
 			tweet = text_model.make_short_sentence(length,max_overlap_ratio=overlap)
 		
+		print(tweet)
 
-	print(tweet)
+
 
 	# create image
 	if not hard_test:
@@ -219,6 +212,7 @@ def main_printer(tweet=None, story=True, post=False):
 	# post
 	if not test and not hard_test:	
 		
+		print("preparing apache upload")
 		# write temporary file with description for apache index list
 		tmp_file_path = tmp_path + "tmp.txt"
 		tmp_file = open(tmp_file_path,'w+')
@@ -249,7 +243,6 @@ def main_printer(tweet=None, story=True, post=False):
 	except:
 		print("ftp failure")
 	
-	print("Finished")
 
 
 if __name__ == "__main__":

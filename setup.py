@@ -38,3 +38,4 @@ setup(name='sickbotsocial',
 old_name = os.path.join(thelibFolder, "sickbotsocial/config-example.py")
 new_name = os.path.join(thelibFolder, "sickbotsocial/config.py")  
 os.rename(old_name, new_name)
+open("printed.txt", 'a').close()
