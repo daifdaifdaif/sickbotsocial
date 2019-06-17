@@ -86,8 +86,14 @@ def print_quote(s, template_file, story=True, font_size=90):
 
 	s = s.decode('utf-8')
 	s = s.lower()
+
+	# CLEAN UP TEXT 
 	
 	s = re.sub(r'[&].+\s', '', s)
+	s = re.sub(r'@\S*', "", s)
+	s = re.sub(r'http\S*', "", s)
+	s = re.sub(r'  ', " ", s)
+	s = re.sub(r'RT', "", s)
 	
 	if len(s) > 100:
 		if len(s) > 250:

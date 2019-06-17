@@ -119,8 +119,6 @@ if test == 0:
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
 	
-	
-	
 
 		# CLEAN UP
 	
