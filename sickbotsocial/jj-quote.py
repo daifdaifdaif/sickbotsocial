@@ -92,7 +92,6 @@ if test == 0:
 	f = open(id_file,"r+")
 	last_id = f.readline()
 	f.close()
-	print("last id: " + last_id)
 
 	print("reading tweets")
 	tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended', since_id=last_id)
