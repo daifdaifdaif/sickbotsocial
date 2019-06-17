@@ -113,7 +113,20 @@ if test == 0:
 				
 					length = randint(min_words,max_words)
 					overlap = random.uniform(min_overlap,max_overlap)
-					answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
+					
+					rand_sel = randint(0,3)
+					
+					if rand_sel == 0:
+					
+						answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
+						
+					elif rand_sel == 1:
+					
+						answer = text_model.make_sentence_with_start("ich", strict=False, max_words=length, max_overlap_ratio=overlap)		
+						
+					else:
+						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
+					
 				answer = "@sickbutsocial " + answer
 				if test == 0:
 					api.update_status(answer,tweet.id)
