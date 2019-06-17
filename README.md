@@ -34,7 +34,7 @@ multiple parameters can be edited in `config.py`. online functionality (reading 
 4. *add .jpg images to folder `insta-pics/` (optional)*
 5. run `cd sickbotsocial && python jj-quote.py`
 
-created image files are found in the `output` directory.
+quotes are output in terminal. created image files are found in the `output` directory.
 
 _________
 
