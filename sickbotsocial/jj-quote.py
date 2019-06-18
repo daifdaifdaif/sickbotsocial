@@ -103,7 +103,7 @@ if test == 0:
 		# RETWEET JJs TWEETS ABOUT ME <3 
 	
 		if retweet_jj == 1:
-			if any(ext in tweet.full_text for ext in trigger_words):
+			if any(ext in tweet.full_text for ext in trigger_words) or any(ext in tweet.in_reply_to_screen_name for ext in trigger_words):
 	
 
 				# TRY TO GENERATE
