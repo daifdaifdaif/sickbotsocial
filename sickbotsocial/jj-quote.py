@@ -103,7 +103,16 @@ if test == 0:
 		# RETWEET JJs TWEETS ABOUT ME <3 
 	
 		if retweet_jj == 1:
-			if any(ext in tweet.full_text for ext in trigger_words) or any(ext in tweet.in_reply_to_screen_name for ext in trigger_words):
+			
+			# CHECK FOR TRIGGER WORDS
+			
+			# python "any ext in ..." function will not work with null, set string to check accordingly
+			if tweet.in_reply_to_screen_name == null:
+				reply_check = "empty"
+			else:
+				reply_check = tweet.in_reply_to_screen_name
+			
+			if any(ext in tweet.full_text for ext in trigger_words) or any(ext in reply_check for ext in trigger_words):
 	
 
 				# TRY TO GENERATE
