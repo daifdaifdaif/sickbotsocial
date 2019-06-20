@@ -107,7 +107,7 @@ if test == 0:
 			# CHECK FOR TRIGGER WORDS
 			
 			# python "any ext in ..." function will not work with null, set string to check accordingly
-			if tweet.in_reply_to_screen_name == null:
+			if tweet.in_reply_to_screen_name == None:
 				reply_check = "empty"
 			else:
 				reply_check = tweet.in_reply_to_screen_name
@@ -161,4 +161,54 @@ if test == 0:
 		f = open(id_file,"w")
 		f.write(str(tweets[0].id))
 		f.close()
+	
+	
+	
+	
+	## CHECK MY OWN TWEETS
+	
+	print("reading tweets by me")
+	tweets = api.user_timeline(user_id=bot_id, count=3, tweet_mode='extended')
+	print("found " + str(len(tweets)) + " new tweets by @sickbotsocial")
+
+
+	for tweet in tweets:
+
+		# RETWEET MY TWEETS ABOUT ME <3 
+	
+		if retweet_jj == 1:
+			
+			# CHECK FOR TRIGGER WORDS
+			
+			# python "any ext in ..." function will not work with null, set string to check accordingly
+
+			
+			if any(ext in tweet.full_text for ext in trigger_words):
+	
+
+				# TRY TO GENERATE
+				answer = None
+				while answer == None:
+				
+					length = randint(min_words,max_words)
+					overlap = random.uniform(min_overlap,max_overlap)
+					
+					rand_sel = randint(0,10)
+					
+					if rand_sel == 0:
+					
+						answer = text_model.make_sentence_with_start("bot", strict=False, max_words=length, max_overlap_ratio=overlap)
+						
+					elif rand_sel == 1:
+					
+						answer = text_model.make_sentence_with_start("ich", strict=False, max_words=length, max_overlap_ratio=overlap)		
+						
+					else:
+						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
+					
+				answer = "@sickbotsocial " + answer
+				if test == 0:
+					new_tweet = api.update_status(answer,tweet.id)
+					api.create_favorite(tweet.id)
+					api.retweet(new_tweet.id)
 	
