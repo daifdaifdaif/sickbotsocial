@@ -17,7 +17,8 @@ max_posts_to_do_at_once = 2
 # READING PRINTED TWEETS
 f = open(printed_tweets_file, "rw+")
 printed_tweets = f.readlines()
-
+		
+f2 = open(corpus_file,"a")
 
 
 
@@ -64,7 +65,14 @@ for tweet in tweets:
 				print("printing: "+text)
 				main_printer(text, post=post_img)
 				f.write(text+"\n")
-				amt_posted += 1
+				amt_posted += 1		
+				
+				text = re.sub(r'@\S*', "", tweet.full_text)
+				text = re.sub(r'http\S*', "", text)
+				text = re.sub(r'  ', " ", text)
+				text = re.sub(r'RT', "", text)
+				f2.write(text.encode('utf-8') + "\n")
+
 				
 				if amt_posted == max_posts_to_do_at_once:
 					break
@@ -74,3 +82,4 @@ for tweet in tweets:
 			
 
 f.close()
+f2.close()
