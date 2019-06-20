@@ -209,6 +209,6 @@ if test == 0:
 				answer = "@sickbotsocial " + answer
 				if test == 0:
 					new_tweet = api.update_status(answer,tweet.id)
-					api.create_favorite(tweet.id)
-					api.retweet(new_tweet.id)
+					# api.create_favorite(tweet.id)
+					# api.retweet(new_tweet.id)
 	
