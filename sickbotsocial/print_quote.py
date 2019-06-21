@@ -170,9 +170,8 @@ def choose_background():
 	for entry in listOfFiles:
 		if entry.endswith(".jpg"):
 			template_files.append(back_path + entry)
-
 	
-
+	print(template_files)
 	# if none available make black file
 	if not template_files:
 		print("no images input, create empty image")
