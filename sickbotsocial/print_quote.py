@@ -133,7 +133,6 @@ def print_quote(s, template_file, story=True, font_size=90):
 		draw.text((x, y2), text, text_color, font)
 		y2 = y2 + font_size + 5
 
-
 	# set out files
 	out_file_name = st
 	out_file = out_path + out_file_name + ".jpg"
@@ -155,14 +154,9 @@ def print_quote(s, template_file, story=True, font_size=90):
 	return out_file, out_file_story, out_file_name
 
 
+# FUNCTION: SELECT BACKGROUND IMAGE FROM IMAGE CORPUS
+def choose_background():
 
-
-# MAIN FUNCTION
-# gets called by tw_favs_to_insta.py
-
-def main_printer(tweet=None, story=True, post=False):
-
-	
 	# good random seed
 	t = int( time.time() * 1000.0 )
 	random.seed( ((t & 0xff000000) >> 24) +
@@ -181,31 +175,32 @@ def main_printer(tweet=None, story=True, post=False):
 	except:
 		print("failure loading template files. check specified directory in config.py")
 	
-	
+
 	# if none available make black file
 	if not template_files:
 		img = Image.new('RGB', (800,800), (255, 255, 255))
 		img_path = back_path+"black.jpg"
 		img.save(img_path, "JPEG")
-		template_file = img_path
+		return img_path
 	else:
 		#select random template file
-		template_file = template_files[random.randint(0,(len(template_files)-1))]
-		
+		return template_files[random.randint(0,(len(template_files)-1))]
 	
-	# open ftp session
-	try:
-		session = ftplib.FTP(HOST,USER,PASSWD)
-	except:
-		print("FTP failure")
 
+
+# MAIN FUNCTION
+# gets called by tw_favs_to_insta.py
+# tweet = text to print
+# story = whether to post to story & create 1080*1920 image
+# post = whether to create instagram post
+
+def main_printer(tweet=None, story=True, post=False):
 
 	# check whether text was provided 
 	# generate text if not
 	if tweet == None:
 
 		print("no text supplied. generating tweet")
-		print("reading corpus: "+corpus_file)
 		with open (corpus_file) as f:
 			text = f.read()
 
@@ -224,27 +219,29 @@ def main_printer(tweet=None, story=True, post=False):
 			overlap = random.uniform(min_overlap,max_overlap)
 			tweet = text_model.make_short_sentence(length,max_overlap_ratio=overlap)
 		
-		print(tweet)
+		print("tweet: "+tweet)
 
-
-
+		
+	template_file = choose_background()
 	# create image
 	if not hard_test:
 		file, file_story, file_name = print_quote(tweet, template_file);
 
 
-	# post
+	# UPLOAD
 	if not test and not hard_test:	
+
+		# APACHE DIRECTORY PREP
 		
-		print("preparing apache upload")
 		# write temporary file with description for apache index list
 		tmp_file_path = tmp_path + "tmp.txt"
 		tmp_file = open(tmp_file_path,'w+')
 		tmp_file.write('AddDescription \'<a href="'+file_name+'.jpg'+'">'+tweet+'</a>\' ' + file_name +'.jpg' + '\n')
 		tmp_file.close()
 		
-		# ftp upload
+		# FTP UPLOAD
 		try:
+			session = ftplib.FTP(HOST,USER,PASSWD)
 			ftp_file = open(file,'rb')
 			session.storbinary('STOR '+file_name+'.jpg', ftp_file)  
 			ftp_file.close()
@@ -254,6 +251,9 @@ def main_printer(tweet=None, story=True, post=False):
 			
 		except:
 			print("ftp failure")
+		
+		
+		# INSTA UPLOAD
 		
 		if story:
 			os.system("php7.0 " + script_story + " "+ file_story + "> /dev/null")
