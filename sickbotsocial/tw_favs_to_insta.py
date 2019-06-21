@@ -76,14 +76,14 @@ for tweet in tweets:
 			print ("already printed this tweet")
 	
 		else:				
-			
-			# send tweet to print_image.py
+
 			
 			# remove whitespace if there's one at the start 
 			if text[0] == " ":
 				text = text[1:]
 				
-				
+						
+			# send tweet to print_image.py	
 			main_printer(text, post=post_img)
 			
 			# write to printed tweets

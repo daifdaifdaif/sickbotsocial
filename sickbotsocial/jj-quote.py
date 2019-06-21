@@ -14,22 +14,9 @@ from random import randint
 import tweepy
 
 
-
-# CHECK WHETHER WE'RE LIVE
-
-total = len(sys.argv)
-print(total)
-if total > 1:
-	if sys.argv[1] == "test":
-		test = 1
-		print("test mode engaged")
-
-
-
-#LOAD CORPUS TEXT FILE
-print("reading corpus: "+corpus_file)
+# LOAD CORPUS TEXT FILE
 with open (corpus_file) as f:
-	text = f.read()
+	corpus_text = f.read()
 
 
 #TWITTER LOGIN
@@ -42,26 +29,23 @@ if test == 0:
 	print("logged in")
 
 
-
-
 # SET AMOUNT OF TWEETS TO GENERATE
 if test == 0:
 	j = randint(1,max_tweet_amount)
 else:
-	j = 1
+	j = 5
 
-
-
-i = 0
 
 # GENERATE TWEETS
+i = 0
 while i < j:
 		
+	# create text model
 	k = randint(markov_state_size_range[0],markov_state_size_range[1])	
-	text_model = markovify.NewlineText(text, state_size=k)
+	text_model = markovify.NewlineText(corpus_text, state_size=k)
 	
 
-	# TRY TO GENERATE
+	# generate untill we've got a new tweet
 	tweet = None
 	while tweet == None:
 		length = randint(min_length,max_length)
@@ -70,21 +54,23 @@ while i < j:
 	
 
 	if test == 0:
-		# POST TWEET
+		# online -> post tweet
 
 		api.update_status(tweet)
 		print("Tweeted: " + tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
+		
 		#ADD TO CORPUS
 		f = open(corpus_file,"a")
 		f.write(tweet + "\n")
 		
 	else:
-		
-		print(tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
+		# we're offline -> only output the tweet
+		print(tweet)
 		main_printer(tweet, story=False, post=False)
 	i += 1
 	
 f.close();
+
 
 # ADD RECENT JJ TWEETS TO CORPUS
 if test == 0:
@@ -157,9 +143,7 @@ if test == 0:
 		f = open(id_file,"w")
 		f.write(str(tweets[0].id))
 		f.close()
-	
-	
-	
+		
 	
 	## CHECK MY OWN TWEETS
 	
