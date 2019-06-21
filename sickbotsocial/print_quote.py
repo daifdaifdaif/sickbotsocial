@@ -248,11 +248,10 @@ def main_printer(tweet=None, story=True, post=False):
 			ftp_file = open(tmp_file_path,'rb')
 			session.storbinary('APPE .htaccess', ftp_file)
 			ftp_file.close()  
-			
+			session.quit()			
 		except:
 			print("ftp failure")
-		
-		
+			
 		# INSTA UPLOAD
 		
 		if story:
@@ -260,13 +259,6 @@ def main_printer(tweet=None, story=True, post=False):
 		if post:
 			os.system("php7.0 " + script2 + " "+ file + " \""+ tweet +" #sickbotsocial #dieyungenhurendothiv\" > /dev/null")
 		
-
-	
-	try:
-		session.quit()
-	except:
-		print("ftp failure")
-	
 
 
 if __name__ == "__main__":
