@@ -174,9 +174,9 @@ if test == 0:
 
 	for tweet in tweets:
 
-		# RETWEET MY TWEETS ABOUT ME <3 
+		# ANSWER TO MY TWEETS ABOUT ME <3 
 	
-		if retweet_jj == 1:
+		if retweet_myself == 1:
 			
 			# CHECK FOR TRIGGER WORDS
 			
