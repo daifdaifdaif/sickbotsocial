@@ -54,6 +54,9 @@ retweet_threshold = 1
 # MAX CHARS PER LINE (INSTAGRAM)
 chars_per_line = 15
 
+# MAX INSTA POSTS TO DO AT ONCE
+max_posts_to_do_at_once = 2
+
 # INSTAGRAM FONT STYLE
 font_file = "/Library/Fonts/Arial.ttf"
 outline = 1

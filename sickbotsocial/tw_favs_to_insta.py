@@ -13,7 +13,6 @@ from print_quote import *
 
 # GLOBALS
 posts_to_scan = 50
-max_posts_to_do_at_once = 2
 
 
 # FUNCTION: GET USER IDs OF PEOPLE WHO FAVED A TWEET

@@ -38,9 +38,6 @@ y = 30
 
 
 
-
-
-
 def mixup_img(img):
 	img = ImageEnhance.Brightness(img).enhance(0.9)
 	if random.random() < rotate:
