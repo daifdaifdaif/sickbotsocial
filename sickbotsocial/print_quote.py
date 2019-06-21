@@ -146,7 +146,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 		img2.paste(img, (0,420))
 		img2.save(out_file_story)
 	img.save(out_file)
-	print("printed " + s + " to " + out_file)
+	print("=====> " + out_file)
 
 	return out_file, out_file_story, out_file_name
 
