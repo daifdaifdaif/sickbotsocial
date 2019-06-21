@@ -38,4 +38,7 @@ setup(name='sickbotsocial',
 old_name = os.path.join(thelibFolder, "sickbotsocial/config-example.py")
 new_name = os.path.join(thelibFolder, "sickbotsocial/config.py")  
 os.rename(old_name, new_name)
-open("printed.txt", 'a').close()
+printed_path = os.path.join(thelibFolder, "printed.txt")
+printed_imgs_path = os.path.join(thelibFolder, "insta-pics/printed_imgs.txt")
+open(printed_path, 'a').close()
+open(printed_imgs_path, 'a').close()
