@@ -154,6 +154,17 @@ def print_quote(s, template_file, story=True, font_size=90):
 # FUNCTION: SELECT BACKGROUND IMAGE FROM IMAGE CORPUS
 def choose_background():
 
+	# check which images have been used
+	f = open(printed_imgs_file, "rw+")
+	used_files = f.readlines()
+	
+	# reset used images every 300 images
+	if len(used_files) > 300:
+		f.close()
+		f = open(printed_imgs_file, 'w')
+		used_files = ["empty"]
+
+
 	# good random seed
 	t = int( time.time() * 1000.0 )
 	random.seed( ((t & 0xff000000) >> 24) +
@@ -181,7 +192,14 @@ def choose_background():
 		return img_path
 	else:
 		#select random template file
-		return template_files[random.randint(0,(len(template_files)-1))]
+		while True:
+			chosen_image = template_files[random.randint(0,(len(template_files)-1))]
+			
+			# check if file has been used already
+			if (chosen_image + "\n") not in used_files:
+				f.write(chosen_image+"\n")
+				f.close()
+				return chosen_image
 	
 
 
