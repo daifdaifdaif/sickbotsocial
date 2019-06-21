@@ -7,7 +7,7 @@ import os
 import urllib2
 
 from config import *
-
+from clean_tweet import clean_tweet
 from print_quote import *
 
 
@@ -68,53 +68,48 @@ for tweet in tweets:
 		else:
 			post_img = False
 		
-		try:	
-			text = tweet.full_text.encode("utf-8")
-		
-		
-			if (text + "\n") in printed_tweets:
-				print ("already printed this tweet")
-		
-			else:				
-				
-				# send tweet to print_image.py
-				
-				# remove whitespace if there's one at the start 
-				if text[0] == " ":
-					text = text[1:]
-					
-					
-				main_printer(text, post=post_img)
-				
-				# write to printed tweets
-				f.write(text+"\n")
-				
-				print("printed tweet")
-				
-				# add faveds tweet to corpus file, enables weightening by user likes
-				
-				text = re.sub(r'@\S*', "", tweet.full_text)
-				text = re.sub(r'http\S*', "", text)
-				text = re.sub(r'  ', " ", text)
-				text = re.sub(r'RT', "", text)
-				f2.write(text.encode('utf-8') + "\n")
-				
-				# check for weighted accounts and write again to file if true
-				
-				faves_by = get_user_ids_of_post_likes(tweet.id)
-				if faves_by != False:
-					if any(ext in faves_by for ext in weighted_user_ids):
-						print("found fav by weightened user")
-						f2.write(text.encode('utf-8') + "\n")
 
+		text = tweet.full_text.encode("utf-8")
+	
+	
+		if (text + "\n") in printed_tweets:
+			print ("already printed this tweet")
+	
+		else:				
+			
+			# send tweet to print_image.py
+			
+			# remove whitespace if there's one at the start 
+			if text[0] == " ":
+				text = text[1:]
 				
-				amt_posted += 1	
-					
-				if amt_posted == max_posts_to_do_at_once:
-					break
-		
-		except:
-			print("error?!?!")
+				
+			main_printer(text, post=post_img)
+			
+			# write to printed tweets
+			f.write(text+"\n")
+			
+			print("printed tweet")
+			
+			# add faveds tweet to corpus file, enables weightening by user likes
+			
+			text = clean_tweet(tweet.full_text)
+			f2.write(text.encode('utf-8') + "\n")
+			
+			# check for weighted accounts and write again to file if true
+			
+			faves_by = get_user_ids_of_post_likes(tweet.id)
+			if faves_by != False:
+				if any(ext in faves_by for ext in weighted_user_ids):
+					print("found fav by weightened user")
+					f2.write(text.encode('utf-8') + "\n")
+
+			
+			amt_posted += 1	
+				
+			if amt_posted == max_posts_to_do_at_once:
+				break
+
 			
 
 f.close()

@@ -5,6 +5,7 @@ import textwrap
 import random
 
 from config import *
+from clean_tweet import clean_tweet
 
 import re, time
 from datetime import datetime, timedelta
@@ -86,11 +87,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 	# clean up text
 	s = s.decode('utf-8')
 	s = s.lower()
-	s = re.sub(r'[&].+\s', '', s)
-	s = re.sub(r'@\S*', "", s)
-	s = re.sub(r'http\S*', "", s)
-	s = re.sub(r'  ', " ", s)
-	s = re.sub(r'RT', "", s)
+	s = clean_tweet(s)
 	
 	# adjust font size to text length
 	if len(s) > 100:
@@ -236,7 +233,8 @@ def main_printer(tweet=None, story=True, post=False):
 		# write temporary file with description for apache index list
 		tmp_file_path = tmp_path + "tmp.txt"
 		tmp_file = open(tmp_file_path,'w+')
-		tmp_file.write('AddDescription \'<a href="'+file_name+'.jpg'+'">'+tweet+'</a>\' ' + file_name +'.jpg' + '\n')
+		apache_string = clean_tweet(tweet)
+		tmp_file.write('AddDescription \'<a href="'+file_name+'.jpg'+'">'+apache_string+'</a>\' ' + file_name +'.jpg' + '\n')
 		tmp_file.close()
 		
 		# FTP UPLOAD

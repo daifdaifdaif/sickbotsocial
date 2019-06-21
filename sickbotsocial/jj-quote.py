@@ -5,6 +5,7 @@ import re
 
 from config import *
 from print_quote import *
+from clean_tweet import clean_tweet
 
 
 import random
@@ -141,10 +142,7 @@ if test == 0:
 
 		# CLEAN UP
 	
-		text = re.sub(r'@\S*', "", tweet.full_text)
-		text = re.sub(r'http\S*', "", text)
-		text = re.sub(r'  ', " ", text)
-		text = re.sub(r'RT', "", text)
+		text = clean_tweet(tweet.full_text)
 	
 		
 		if test == 0:
