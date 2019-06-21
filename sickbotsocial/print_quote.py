@@ -79,7 +79,13 @@ def print_quote(s, template_file, story=True, font_size=90):
 	st = datetime.fromtimestamp(ts).strftime('%Y%m%d_%H%M%S')
 
 	
-	random.seed(time.clock())
+	# good random seed
+	t = int( time.time() * 1000.0 )
+	random.seed( ((t & 0xff000000) >> 24) +
+             ((t & 0x00ff0000) >>  8) +
+             ((t & 0x0000ff00) <<  8) +
+             ((t & 0x000000ff) << 24)   )
+	
 	
 
 	s = s.decode('utf-8')
