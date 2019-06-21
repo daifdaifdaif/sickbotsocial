@@ -1,4 +1,5 @@
 # .gitignore
+bot-only/
 jj-nomention-bot.txt
 jj-chat.txt
 jj.txt
