@@ -29,7 +29,7 @@ _________
 
 
 #### config & usage:
-multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `test=0` to enable). twitter API keys and an instagram account are necessary for these features. the supplied corpus file isn't up to date (27.11.18), please pull all the newer Jessica Jurassica tweets by yourself.
+multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `run_offline=0` to enable). twitter API keys and an instagram account are necessary for these features. the supplied corpus file isn't up to date (27.11.18), please pull all the newer Jessica Jurassica tweets by yourself.
 
 1. clone github repo
 2. run install: `python setup.py install`
@@ -50,5 +50,5 @@ runs on python 2.7
 - [`Pillow==6.0.0`](https://github.com/python-pillow/Pillow)
 
 #### additional requirements for instagram functionality
-- [`Instagram API`](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php and setup `config.php` file)
+- [`Instagram API`](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php, update config.py with paths and enter credentials)
 
