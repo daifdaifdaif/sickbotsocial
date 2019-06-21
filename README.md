@@ -17,10 +17,13 @@ twitter bot that generates tweets in the style of [Jessica Jurassica](http://www
 
 ______
 
-#### modules:
+#### executable modules:
 - `jj-quote.py` - *main*
 - `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
 - `print_quote.py` - *overlays quote on image file*
+
+#### helper modules:
+- `clean_tweet.py` - *regex clean up, removes mentions, "RT" etc
 
 _________
 
