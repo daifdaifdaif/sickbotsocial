@@ -17,12 +17,12 @@ printed_tweets_file = "../printed.txt"
 corpus_file = "../corpus/jj-nomention.txt"
 chain_file = "../corpus/jj.json"
 
-
 # TWEET LENGTH
 min_length=30
 max_length=230
 
-# UNUSED TWEET LENGTH
+# TWEET LENGTH FOR ANSWERS
+# (must be specified seperately for markovify)
 min_words=5
 max_words=20
 
@@ -35,11 +35,9 @@ markov_state_size_range=[1,3]
 jj_user_id="878210144827580416"
 bot_id = "1067095466175811586"
 
-
-
 # TWITTER USER IDS WITH DOUBLE WEIGTH
-# if these users fav bot tweets they get added to the corpus double weighted
-jj_user_id = ["878210144827580416", "906895118912901121"]
+# if these users fav bot tweets the tweets get added to the corpus double weighted
+weighted_user_ids = [jj_user_id, bot_id, "906895118912901121"]
 
 # MAX AMOUNT OF TWEETS AT ONCE
 max_tweet_amount = 2
