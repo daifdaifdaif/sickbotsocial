@@ -44,8 +44,8 @@ trigger_words = ["bot", "algorith"]
 
 # CORPUS FILES
 # these get written to by the bot with its own tweets
-corpus_file = "/home/pi/jj-bot/corpus/jj-nomention-bot.txt"
-chain_file = "/home/pi/jj-bot/corpus/jj.json"
+corpus_file = "../corpus/jj-nomention.txt"
+chain_file = "../corpus/jj.json"
 
 # TWEET LENGTH
 min_length=30
@@ -65,7 +65,7 @@ markov_state_size_range=[1,3]
 #####################
 
 # FONT STYLE
-font_file = "/home/pi/fonts/SF-Pro-Display-Semibold.otf"
+font_file = "/Library/Fonts/Arial.ttf"
 outline = 1
 outline_color = (255,255,255)
 text_color = (255,255,255)

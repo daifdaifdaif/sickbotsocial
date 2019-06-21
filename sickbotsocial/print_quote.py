@@ -174,14 +174,13 @@ def choose_background():
 	
 	
 	# load template files
-	try:
-		template_files = []
-		listOfFiles = os.listdir(back_path) 
-		for entry in listOfFiles:
-			if entry.endswith(".jpg"):
-				template_files.append(back_path + entry)
-	except:
-		print("failure loading template files. check specified directory in config.py")
+
+	template_files = []
+	listOfFiles = os.listdir(back_path) 
+	for entry in listOfFiles:
+		if entry.endswith(".jpg"):
+			template_files.append(back_path + entry)
+
 	
 
 	# if none available make black file
