@@ -23,7 +23,7 @@ ______
 - `print_quote.py` - *overlays quote on image file*
 
 #### helper modules:
-- `clean_tweet.py` - *regex clean up, removes mentions, "RT" etc
+- `clean_tweet.py` - *regex clean up, removes mentions, "RT" etc*
 
 _________
 
