@@ -161,7 +161,7 @@ def choose_background():
 	# reset used images every 300 images
 	if len(used_files) > 300:
 		f.close()
-		f = open(printed_imgs_file, 'w')
+		f = open(printed_imgs_file, 'w+')
 		used_files = ["empty"]
 
 
