@@ -172,7 +172,6 @@ def choose_background():
 			template_files.append(back_path + entry)
 	# if none available make black file
 	if not template_files:
-		print("no images input, create empty image")
 		img = Image.new('RGB', (800,800), (255, 255, 255))
 		img_path = back_path+"black.jpg"
 		img.save(img_path, "JPEG")
@@ -186,14 +185,12 @@ def choose_background():
 		
 		# reset used images after going through half of them
 		if len(used_files) >= (len(template_files)/2):
-			print("reset printed files")
 			f = open(printed_imgs_file, 'w+').close()
 			used_files = ["empty"]
 			
 		#select random template file
 		while True:
 			chosen_image = template_files[random.randint(0,(len(template_files)-1))]
-			print("chosen_image: "+chosen_image)
 			# check if file has been used already
 			if (chosen_image + "\n") not in used_files:
 				f = open(printed_imgs_file, 'a+')
