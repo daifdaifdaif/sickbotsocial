@@ -136,11 +136,11 @@ def print_quote(s, template_file, story=True, font_size=90):
 	out_file_story = out_path + "story.jpg"
 	
 	# more jpg
-	img = img.resize((800,800))
+	img = img.resize((850,850))
 	img = img.resize((1080,1080))
 	img = img.filter(ImageFilter.SMOOTH)
 	
-	# create files
+	# create files to post
 	if story:
 		img2 = Image.new("RGB", (1080,1920), color = 'white')
 		img2.paste(img, (0,420))
