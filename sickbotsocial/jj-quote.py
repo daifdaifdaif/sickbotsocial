@@ -66,7 +66,7 @@ while i < j:
 	else:
 		# we're offline -> only output the tweet
 		print(tweet)
-		main_printer(tweet, story=False, post=False)
+		main_print_function(tweet, story=False, post=False)
 	i += 1
 	
 f.close();
@@ -89,7 +89,7 @@ if run_offline == 0:
 
 		# interact with jj tweets
 	
-		if retweet_jj == 1:
+		if react_to_jj == 1:
 			
 			# check for trigger words
 			
@@ -158,7 +158,7 @@ if run_offline == 0:
 
 		# ANSWER TO MY TWEETS ABOUT ME <3 
 	
-		if retweet_myself == 1:
+		if react_to_myself == 1:
 			
 			# check for trigger words
 			

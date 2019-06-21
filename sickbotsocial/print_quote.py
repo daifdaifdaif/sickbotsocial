@@ -205,7 +205,7 @@ def choose_background():
 # story = whether to post to story & create 1080*1920 image
 # post = whether to create instagram post
 
-def main_printer(tweet=None, story=True, post=False):
+def main_print_function(tweet=None, story=True, post=False):
 
 	# check whether text was provided 
 	# generate text if not
@@ -268,9 +268,9 @@ def main_printer(tweet=None, story=True, post=False):
 		if story:
 			os.system("php7.0 " + script_story + " "+ file_story + "> /dev/null")
 		if post:
-			os.system("php7.0 " + script2 + " "+ file + " \""+ tweet +" #sickbotsocial #dieyungenhurendothiv\" > /dev/null")
+			os.system("php7.0 " + script_post + " "+ file + " \""+ tweet +" #sickbotsocial #dieyungenhurendothiv\" > /dev/null")
 		
 
 
 if __name__ == "__main__":
-    main_printer()
+    main_print_function()

@@ -11,7 +11,7 @@ back_path = "../insta-pics/"
 
 # php scripts to upload to insta
 script_story = "../instagram-php/uploadJJ.php"
-script2 = "../instagram-php/uploadJJPost.php"
+script_post = "../instagram-php/uploadJJPost.php"
 
 # to save which tweets already got read
 id_file = "../tmp/id.txt"
@@ -36,8 +36,8 @@ bot_id = "1067095466175811586"
 weighted_user_ids = [jj_user_id, bot_id, "906895118912901121"]
 
 # REACT TO TWEETS
-retweet_jj = 1
-retweet_myself = 1
+react_to_jj = 1
+react_to_myself = 1
 trigger_words = ["bot", "algorith"]
 
 ###############################
@@ -47,7 +47,6 @@ trigger_words = ["bot", "algorith"]
 # CORPUS FILES
 # these get written to by the bot with its own tweets
 corpus_file = "../corpus/jj-nomention.txt"
-chain_file = "../corpus/jj.json"
 
 # TWEET LENGTH
 min_length=30

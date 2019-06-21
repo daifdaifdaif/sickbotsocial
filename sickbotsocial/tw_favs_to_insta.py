@@ -35,8 +35,6 @@ printed_tweets = f.readlines()
 
 f2 = open(corpus_file,"a")
 
-
-
 #TWITTER LOGIN
 
 print("logging in")	
@@ -84,7 +82,7 @@ for tweet in tweets:
 				
 						
 			# send tweet to print_image.py	
-			main_printer(text, post=post_img)
+			main_print_function(text, post=post_img)
 			
 			# write to printed tweets
 			f.write(text+"\n")
