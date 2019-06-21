@@ -71,8 +71,6 @@ def mixup_img(img):
 
 
 def print_quote(s, template_file, story=True, font_size=90):
-
-	print "\nprint_quote(): overlaying quote on image file"
 	
 	if len(s) <= 1:
 		return False
@@ -146,7 +144,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 		img2.paste(img, (0,420))
 		img2.save(out_file_story)
 	img.save(out_file)
-	print("saved image: " + out_file)
+	print("created image: " + out_file)
 
 
 	return out_file, out_file_story, out_file_name
