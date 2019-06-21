@@ -80,7 +80,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 
 	# get timestamp to generate filename
 	ts = datetime.now()
-	st = ts.strftime('%Y%m%d_%H%M%S-%f')
+	st = ts.strftime('%Y%m%d_%H%M%S-%f')[:-4]
 
 	# clean up text
 	s = s.decode('utf-8')
