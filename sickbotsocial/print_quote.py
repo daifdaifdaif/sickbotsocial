@@ -182,24 +182,27 @@ def choose_background():
 	else:
 	
 		# check which images have been used
-		f = open(printed_imgs_file, "rw+")
+		f = open(printed_imgs_file, "r")
 		used_files = f.readlines()
-	
-		# reset used images every 300 images
-		if len(used_files) > 300:
-			f.close()
-			f = open(printed_imgs_file, 'w+')
+		f.close()
+		
+		# reset used images after going through half of them
+		if len(used_files) >= (len(template_files)/2):
+			print("reset printed files")
+			f = open(printed_imgs_file, 'w+').close()
 			used_files = ["empty"]
 			
 		#select random template file
 		while True:
 			chosen_image = template_files[random.randint(0,(len(template_files)-1))]
-			
+			print("chosen_image: "+chosen_image)
 			# check if file has been used already
 			if (chosen_image + "\n") not in used_files:
+				f = open(printed_imgs_file, 'a+')
 				f.write(chosen_image+"\n")
 				f.close()
 				return chosen_image
+				break
 	
 
 
