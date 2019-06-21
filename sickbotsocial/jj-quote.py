@@ -84,8 +84,6 @@ while i < j:
 	i += 1
 	
 f.close();
-print("Finished")
-
 
 # ADD RECENT JJ TWEETS TO CORPUS
 if test == 0:
