@@ -31,12 +31,12 @@ from random import randint
 # GLOBALS
 hard_test=0
 
-# font offset
+# font coordinates
 x = 50
 y = 30
 
 
-
+# FUNCTION: REMIX IMAGE (crop, rotate, brighten, ....)
 
 def mixup_img(img):
 	img = ImageEnhance.Brightness(img).enhance(0.9)
@@ -59,36 +59,40 @@ def mixup_img(img):
 		img = img.transpose(Image.FLIP_LEFT_RIGHT)
 		
 	if random.random() < crop:
-		w = random.randint(100,450)
-		h = random.randint(650,1000)
-		img.crop((w,w,h,h))
+		w1 = random.randint(100,450)
+		w2 = random.randint(100,450)
+		h1 = random.randint(650,1000)
+		h2 = random.randint(650,1000)
+		img.crop((w1,w2,h1,h2))
 		img = img.resize((1080,1080))
 	
 	return(img)
 
 
+# FUNCTION: DRAW TWEET ON IMAGE
+# s = string to print
+# template_file = path to background Image
+# story = whether to create 1080 * 1920 version of image
+
 def print_quote(s, template_file, story=True, font_size=90):
 	
 	if len(s) <= 1:
 		return False
-	
+
+	# get timestamp to generate filename
 	ts = time.time()
 	st = datetime.fromtimestamp(ts).strftime('%Y%m%d_%H%M%S')
 
-	
-
-
+	# clean up text
 	s = s.decode('utf-8')
 	s = s.lower()
-
-	# CLEAN UP TEXT 
-	
 	s = re.sub(r'[&].+\s', '', s)
 	s = re.sub(r'@\S*', "", s)
 	s = re.sub(r'http\S*', "", s)
 	s = re.sub(r'  ', " ", s)
 	s = re.sub(r'RT', "", s)
 	
+	# adjust font size to text length
 	if len(s) > 100:
 		if len(s) > 250:
 			font_size = font_size - 50
@@ -98,24 +102,29 @@ def print_quote(s, template_file, story=True, font_size=90):
 			font_size = font_size - 30
 		else:
 			font_size = font_size - 20
-			
 	
+	# wrap text
+	content = textwrap.wrap(s, width=chars_per_line,break_long_words=False)
+				
+	# load font
 	try:
 		font = ImageFont.truetype(font_file, font_size, encoding="unic")
 	except:
 		print("error loading font. check config.py and edit font_file path")
 		sys.exit()
 	
-	
-	content = textwrap.wrap(s, width=chars_per_line,break_long_words=False)
-	
-	
+	# load & remix image
 	img = Image.open(template_file)
 	img = mixup_img(img)
+	
+	# begin drawing
 	draw = ImageDraw.Draw(img)
 
 	# draw wrapped text
+	# y = font coordinate
 	y2 = y
+	
+	# loop through to create outlines
 	for text in content:
 		draw.text((x-outline, y2-outline), text,outline_color,font=font)
 		draw.text((x+outline, y2-outline), text,outline_color,font=font)
@@ -124,12 +133,13 @@ def print_quote(s, template_file, story=True, font_size=90):
 		draw.text((x, y2), text, text_color, font)
 		y2 = y2 + font_size + 5
 
+
 	# set out files
 	out_file_name = st
 	out_file = out_path + out_file_name + ".jpg"
 	out_file_story = out_path + "story.jpg"
 	
-	# more jpg
+	# add more jpg
 	img = img.resize((850,850))
 	img = img.resize((1080,1080))
 	img = img.filter(ImageFilter.SMOOTH)
@@ -142,13 +152,13 @@ def print_quote(s, template_file, story=True, font_size=90):
 	img.save(out_file)
 	print("created image: " + out_file)
 
-
 	return out_file, out_file_story, out_file_name
 
 
 
 
-# load background files 
+# MAIN FUNCTION
+# gets called by tw_favs_to_insta.py
 
 def main_printer(tweet=None, story=True, post=False):
 
@@ -161,12 +171,16 @@ def main_printer(tweet=None, story=True, post=False):
              ((t & 0x000000ff) << 24)   )
 	
 	
-	# choose template file
-	template_files = []
-	listOfFiles = os.listdir(back_path) 
-	for entry in listOfFiles:
-		if entry.endswith(".jpg"):
-			template_files.append(back_path + entry)
+	# load template files
+	try:
+		template_files = []
+		listOfFiles = os.listdir(back_path) 
+		for entry in listOfFiles:
+			if entry.endswith(".jpg"):
+				template_files.append(back_path + entry)
+	except:
+		print("failure loading template files. check specified directory in config.py")
+	
 	
 	# if none available make black file
 	if not template_files:
@@ -175,7 +189,9 @@ def main_printer(tweet=None, story=True, post=False):
 		img.save(img_path, "JPEG")
 		template_file = img_path
 	else:
+		#select random template file
 		template_file = template_files[random.randint(0,(len(template_files)-1))]
+		
 	
 	# open ftp session
 	try:
