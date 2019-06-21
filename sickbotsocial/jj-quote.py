@@ -45,7 +45,7 @@ while i < j:
 	text_model = markovify.NewlineText(corpus_text, state_size=k)
 	
 
-	# generate untill we've got a new tweet
+	# generate until we've got a new tweet
 	tweet = None
 	while tweet == None:
 		length = randint(min_length,max_length)
@@ -72,8 +72,10 @@ while i < j:
 f.close();
 
 
-# ADD RECENT JJ TWEETS TO CORPUS
+# INTERACT WITH JJ TWEETS
 if test == 0:
+	
+	# check last checked id
 	f = open(id_file,"r+")
 	last_id = f.readline()
 	f.close()
@@ -85,13 +87,12 @@ if test == 0:
 
 	for tweet in tweets:
 
-		# RETWEET JJs TWEETS ABOUT ME <3 
+		# interact with jj tweets
 	
 		if retweet_jj == 1:
 			
-			# CHECK FOR TRIGGER WORDS
+			# check for trigger words
 			
-			# python "any ext in ..." function will not work with null, set string to check accordingly
 			if tweet.in_reply_to_screen_name == None:
 				reply_check = "empty"
 			else:
@@ -100,15 +101,16 @@ if test == 0:
 			if any(ext in tweet.full_text for ext in trigger_words) or any(ext in reply_check for ext in trigger_words):
 	
 
-				# TRY TO GENERATE
+				# generate an answer
 				answer = None
 				while answer == None:
 				
 					length = randint(min_words,max_words)
 					overlap = random.uniform(min_overlap,max_overlap)
 					
-					rand_sel = randint(0,3)
 					
+					# weighted random: whether to start answer with defined words
+					rand_sel = randint(0,5)
 					if rand_sel == 0:
 					
 						answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
@@ -120,30 +122,31 @@ if test == 0:
 					else:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 					
+				
 				answer = "@sickbutsocial " + answer
 				if test == 0:
+					# post answer, fav original tweet
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
 	
 
-		# CLEAN UP
-	
+		# clean up text and add to archive
 		text = clean_tweet(tweet.full_text)
 	
-		
 		if test == 0:
 			f = open(corpus_file,"a")
 			f.write(text.encode('utf-8') + "\n")
 			f.close()
 
 
-	#  WRITE LAST CHECKED TWEET ID TO FILE
+	# save id of last checked tweet
 	if len(tweets) > 0:
 		#if test == 0:
 		f = open(id_file,"w")
 		f.write(str(tweets[0].id))
 		f.close()
 		
+	
 	
 	## CHECK MY OWN TWEETS
 	
@@ -158,23 +161,21 @@ if test == 0:
 	
 		if retweet_myself == 1:
 			
-			# CHECK FOR TRIGGER WORDS
+			# check for trigger words
 			
-			# python "any ext in ..." function will not work with null, set string to check accordingly
-
 			
 			if any(ext in tweet.full_text for ext in trigger_words):
 	
 
-				# TRY TO GENERATE
+				# generate answer
 				answer = None
 				while answer == None:
 				
 					length = randint(min_words,max_words)
 					overlap = random.uniform(min_overlap,max_overlap)
 					
-					rand_sel = randint(0,10)
-					
+					# weighted random to start answer with defined words
+					rand_sel = randint(0,9)
 					if rand_sel == 0:
 					
 						answer = text_model.make_sentence_with_start("bot", strict=False, max_words=length, max_overlap_ratio=overlap)
