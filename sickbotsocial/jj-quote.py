@@ -36,6 +36,10 @@ else:
 	j = 5
 
 
+# open files to write to
+f = open(corpus_file,"a")
+f2 = open(archive_file,"a")
+
 # GENERATE TWEETS
 i = 0
 while i < j:
@@ -52,15 +56,16 @@ while i < j:
 		overlap = random.uniform(min_overlap,max_overlap)
 		tweet = text_model.make_short_sentence(length,max_overlap_ratio=overlap)
 	
-
+	
 	if run_offline == 0:
 		# online -> post tweet
-
+		
+		f2.write(tweet + "\n")
 		api.update_status(tweet)
 		print("Tweeted: " + tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
 		
 		#ADD TO CORPUS
-		f = open(corpus_file,"a")
+
 		f.write(tweet + "\n")
 		
 	else:
@@ -70,6 +75,7 @@ while i < j:
 	i += 1
 	
 f.close();
+f2.close();
 
 
 # INTERACT WITH JJ TWEETS

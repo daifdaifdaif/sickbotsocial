@@ -48,6 +48,10 @@ trigger_words = ["bot", "algorith"]
 # these get written to by the bot with its own tweets
 corpus_file = "../corpus/jj-nomention.txt"
 
+# ARCHIVE FILE
+# to save the bots previously written tweets
+archive_file = "../corpus/jj-bot-only.txt"
+
 # TWEET LENGTH
 min_length=30
 max_length=230
