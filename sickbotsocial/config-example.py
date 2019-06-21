@@ -82,9 +82,13 @@ crop = 0.6
 darken = 0.2
 mirror = 0.2
 
-# LIKES OR RETWEETS NEEDED TO CROSSPOST TO INSTAGRAM
-like_threshold = 2
-retweet_threshold = 1
+# FAV OR RETWEETS NEEDED TO CREATE POST ON INSTAGRAM
+post_fav_threshold = 2
+post_retweet_threshold = 2
+
+# FAV OR RETWEETS NEEDED TO CREATE STORY ON INSTAGRAM
+story_fav_threshold = 1
+story_post_retweet_threshold = 1
 
 # MAX INSTA POSTS TO DO AT ONCE
 max_posts_to_do_at_once = 2

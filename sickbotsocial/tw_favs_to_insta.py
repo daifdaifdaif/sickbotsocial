@@ -55,13 +55,13 @@ except:
 
 for tweet in tweets:
 
-# rt alleine zählt nicht wegen hurensohn bot
-	if tweet.favorite_count > 0 :
-		print("found ID: " + str(tweet.id) + " | Favs: " + str(tweet.favorite_count))
-		
-		if tweet.retweet_count >= retweet_threshold:
+	# check for fav and retweet threshold
+	if tweet.favorite_count >= story_fav_threshold or tweet.retweet_count >= story_post_retweet_threshold:
+
+		# check for fav and retweet threshold to post
+		if tweet.retweet_count >= post_retweet_threshold:
 			post_img = True
-		elif tweet.favorite_count >= like_threshold:
+		elif tweet.favorite_count >= post_fav_threshold:
 			post_img = True
 		else:
 			post_img = False
