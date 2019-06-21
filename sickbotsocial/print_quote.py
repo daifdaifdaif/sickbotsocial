@@ -30,8 +30,6 @@ from random import randint
 
 
 # GLOBALS
-hard_test=0
-
 # font coordinates
 x = 50
 y = 30
@@ -155,7 +153,6 @@ def print_quote(s, template_file, story=True, font_size=90):
 # FUNCTION: SELECT BACKGROUND IMAGE FROM IMAGE CORPUS
 def choose_background():
 
-
 	# good random seed
 	t = int( time.time() * 1000.0 )
 	random.seed( ((t & 0xff000000) >> 24) +
@@ -238,12 +235,11 @@ def main_printer(tweet=None, story=True, post=False):
 		
 	template_file = choose_background()
 	# create image
-	if not hard_test:
-		file, file_story, file_name = print_quote(tweet, template_file);
+	file, file_story, file_name = print_quote(tweet, template_file);
 
 
 	# UPLOAD
-	if not test and not hard_test:	
+	if not run_offline:	
 
 		# APACHE DIRECTORY PREP
 		

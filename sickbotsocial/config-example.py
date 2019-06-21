@@ -1,5 +1,5 @@
 # set to 1 to disable online functionality and just generate text + picture
-test=1
+run_offline=1
 
 #############
 ### PATHS ###
@@ -15,6 +15,8 @@ script2 = "../instagram-php/uploadJJPost.php"
 
 # to save which tweets already got read
 id_file = "../tmp/id.txt"
+
+# to save which tweets got crossposted and which images used to print them
 printed_tweets_file = "../printed.txt"
 printed_imgs_file = "../insta-pics/printed_imgs.txt"
 

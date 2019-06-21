@@ -20,7 +20,7 @@ with open (corpus_file) as f:
 
 
 #TWITTER LOGIN
-if test == 0:
+if run_offline == 0:
 	print("logging in")	
 	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)    
 	auth.set_access_token(access_token, access_secret)
@@ -30,7 +30,7 @@ if test == 0:
 
 
 # SET AMOUNT OF TWEETS TO GENERATE
-if test == 0:
+if run_offline == 0:
 	j = randint(1,max_tweet_amount)
 else:
 	j = 5
@@ -53,7 +53,7 @@ while i < j:
 		tweet = text_model.make_short_sentence(length,max_overlap_ratio=overlap)
 	
 
-	if test == 0:
+	if run_offline == 0:
 		# online -> post tweet
 
 		api.update_status(tweet)
@@ -73,7 +73,7 @@ f.close();
 
 
 # INTERACT WITH JJ TWEETS
-if test == 0:
+if run_offline == 0:
 	
 	# check last checked id
 	f = open(id_file,"r+")
@@ -124,7 +124,7 @@ if test == 0:
 					
 				
 				answer = "@sickbutsocial " + answer
-				if test == 0:
+				if run_offline == 0:
 					# post answer, fav original tweet
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
@@ -133,7 +133,7 @@ if test == 0:
 		# clean up text and add to archive
 		text = clean_tweet(tweet.full_text)
 	
-		if test == 0:
+		if run_offline == 0:
 			f = open(corpus_file,"a")
 			f.write(text.encode('utf-8') + "\n")
 			f.close()
@@ -141,7 +141,6 @@ if test == 0:
 
 	# save id of last checked tweet
 	if len(tweets) > 0:
-		#if test == 0:
 		f = open(id_file,"w")
 		f.write(str(tweets[0].id))
 		f.close()
@@ -188,7 +187,7 @@ if test == 0:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 					
 				answer = "@sickbotsocial " + answer
-				if test == 0:
+				if run_offline == 0:
 					new_tweet = api.update_status(answer,tweet.id)
 					# api.create_favorite(tweet.id)
 					# api.retweet(new_tweet.id)
