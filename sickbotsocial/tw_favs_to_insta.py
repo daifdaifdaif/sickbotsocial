@@ -63,6 +63,8 @@ for tweet in tweets:
 			post_img = True
 		elif tweet.favorite_count >= post_fav_threshold:
 			post_img = True
+		elif tweet.retweet_count + tweet.favorite_count >= post_combined_threshold:
+			post_img = True
 		else:
 			post_img = False
 		

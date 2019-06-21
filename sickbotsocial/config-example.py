@@ -82,9 +82,10 @@ crop = 0.6
 darken = 0.2
 mirror = 0.2
 
-# FAV OR RETWEETS NEEDED TO CREATE POST ON INSTAGRAM
+# FAV OR RETWEETS OR (FAV AND RETWEETS) NEEDED TO CREATE POST ON INSTAGRAM
 post_fav_threshold = 2
 post_retweet_threshold = 2
+post_combined_threshold = 3
 
 # FAV OR RETWEETS NEEDED TO CREATE STORY ON INSTAGRAM
 story_fav_threshold = 1
