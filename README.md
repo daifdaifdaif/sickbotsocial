@@ -10,8 +10,11 @@ virtual art performance /////////
 [www.dieyungenhuren.hiv](http://www.dieyungenhuren.hiv/)
 
 [twitter](http://www.twitter.com/sickbotsocial/) | 
-[instagram](http://www.instagram.com/sickbotsocial/) |
-[image archive](http://www.dieyungenhuren.hiv/sickbotsocial/img/)
+[instagram](http://www.instagram.com/sickbotsocial/)
+
+[searchable image archive](http://www.dieyungenhuren.hiv/sickbotsocial/img/)
+
+[searchable tweet archive](http://www.dieyungenhuren.hiv/sickbotsocial/txt/)
 
 twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
