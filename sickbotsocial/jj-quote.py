@@ -75,7 +75,7 @@ while i < j:
 	i += 1
 	
 f.close();
-f2.close();
+
 
 
 # INTERACT WITH JJ TWEETS
@@ -85,9 +85,12 @@ if run_offline == 0:
 	f = open(id_file,"r+")
 	last_id = f.readline()
 	f.close()
+	f = open(id_mentions_file, "r+")
+	last_id_mentions = f.readline()
+	f.close()
 
 	print("reading tweets")
-	tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended', since_id=last_id)
+	tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended',  include_rts=1 , since_id=last_id)
 	print("found " + str(len(tweets)) + " new tweets by @sickbutsocial")
 
 
@@ -128,10 +131,11 @@ if run_offline == 0:
 					else:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 					
-				
+				f2.write(answer.encode('utf-8') + "\n")
 				answer = "@sickbutsocial " + answer
 				if run_offline == 0:
 					# post answer, fav original tweet
+					
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
 	
@@ -153,7 +157,7 @@ if run_offline == 0:
 		
 	
 	
-	## CHECK MY OWN TWEETS
+## CHECK MY OWN TWEETS FOR TRIGGER WORDS
 	
 	print("reading tweets by me")
 	tweets = api.user_timeline(user_id=bot_id, count=3, tweet_mode='extended')
@@ -191,10 +195,64 @@ if run_offline == 0:
 						
 					else:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
-					
+				
+				f2.write(answer.encode('utf-8') + "\n")
 				answer = "@sickbotsocial " + answer
 				if run_offline == 0:
 					new_tweet = api.update_status(answer,tweet.id)
 					# api.create_favorite(tweet.id)
 					# api.retweet(new_tweet.id)
 	
+
+### GET MENTIONS
+	print("reading mentions")
+
+	tweets = api.mentions_timeline(user_id=bot_id, count=10, tweet_mode='extended',  include_rts=1 , since_id=last_id_mentions)
+	print("found " + str(len(tweets)) + " mentions")
+
+
+	for tweet in tweets:
+
+		# interact with jj tweets
+	
+		if react_to_mentions == 1:
+		
+			# generate an answer
+			answer = None
+			while answer == None:
+			
+				length = randint(min_words,max_words)
+				overlap = random.uniform(min_overlap,max_overlap)
+				
+				
+				# weighted random: whether to start answer with defined words
+				rand_sel = randint(0,5)
+				if rand_sel == 0:
+				
+					answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)	
+					
+				else:
+					answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
+				
+			f2.write(answer.encode('utf-8') + "\n")
+			answer = "@" + tweet.user.screen_name + " " + answer
+			if run_offline == 0:
+				# post answer, fav original tweet
+				api.update_status(answer,tweet.id)
+				api.create_favorite(tweet.id)
+
+
+		# clean up text and add to archive
+		text = clean_tweet(tweet.full_text)
+
+		if run_offline == 0:
+			f = open(corpus_file,"a")
+			f.write(text.encode('utf-8') + "\n")
+			f.close()
+
+
+	# save id of last checked tweet
+	if len(tweets) > 0:
+		f = open(id_mentions_file,"w")
+		f.write(str(tweets[0].id))
+		f.close()

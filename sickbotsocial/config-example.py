@@ -16,6 +16,9 @@ script_post = "../instagram-php/uploadJJPost.php"
 # to save which tweets already got read
 id_file = "../tmp/id.txt"
 
+# to save which mentions already got read
+id_mentions_file = "/home/pi/jj-bot/tmp/id_mentions.txt"
+
 # to save which tweets got crossposted and which images used to print them
 printed_tweets_file = "../printed.txt"
 printed_imgs_file = "../insta-pics/printed_imgs.txt"
@@ -36,6 +39,7 @@ bot_id = "1067095466175811586"
 weighted_user_ids = [jj_user_id, bot_id, "906895118912901121"]
 
 # REACT TO TWEETS
+react_to_mentions = 1
 react_to_jj = 1
 react_to_myself = 1
 trigger_words = ["bot", "algorith"]
