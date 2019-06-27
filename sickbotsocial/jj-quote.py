@@ -213,9 +213,9 @@ if run_offline == 0:
 
 	for tweet in tweets:
 
-		# interact with jj tweets
+		# interact with mentions other than my own
 	
-		if react_to_mentions == 1:
+		if react_to_mentions == 1 and tweet.user.id_str != bot_id:
 		
 			# generate an answer
 			answer = None
