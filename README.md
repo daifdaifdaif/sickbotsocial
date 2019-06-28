@@ -12,7 +12,7 @@ virtual art performance /////////
 [twitter](http://www.twitter.com/sickbotsocial/) | 
 [instagram](http://www.instagram.com/sickbotsocial/)
 
-searchable archives:
+searchable archive of generated tweets and images:
 [images](http://www.dieyungenhuren.hiv/sickbotsocial/img/) | 
 [tweets](http://www.dieyungenhuren.hiv/sickbotsocial/txt/)
 
