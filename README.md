@@ -18,6 +18,8 @@ searchable archives:
 
 twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
+*a short description of the ideas behind this project are found in german [here](SAALTEXT.md)*.
+
 ______
 
 #### executable modules:
