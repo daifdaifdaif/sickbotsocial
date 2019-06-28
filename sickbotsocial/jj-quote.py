@@ -59,14 +59,16 @@ while i < j:
 	
 	if run_offline == 0:
 		# online -> post tweet
-		
-		f2.write(tweet + "\n")
 		api.update_status(tweet)
 		print("Tweeted: " + tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
 		
 		#ADD TO CORPUS
 
 		f.write(tweet + "\n")
+		try:
+			f2.write(answer + "\n")
+		except:
+			print("f2.write error")
 		
 	else:
 		# we're offline -> only output the tweet
@@ -131,13 +133,17 @@ if run_offline == 0:
 					else:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 					
-				f2.write(answer.encode('utf-8') + "\n")
 				answer = "@sickbutsocial " + answer
 				if run_offline == 0:
 					# post answer, fav original tweet
 					
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
+					
+					try:
+						f2.write(answer + "\n")
+					except:
+						print("f2.write error")
 	
 
 		# clean up text and add to archive
@@ -196,13 +202,16 @@ if run_offline == 0:
 					else:
 						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 				
-				f2.write(answer.encode('utf-8') + "\n")
+				
 				answer = "@sickbotsocial " + answer
 				if run_offline == 0:
 					new_tweet = api.update_status(answer,tweet.id)
 					# api.create_favorite(tweet.id)
 					# api.retweet(new_tweet.id)
-	
+				try:
+					f2.write(answer + "\n")
+				except:
+					print("f2.write error")
 
 ### GET MENTIONS
 	print("reading mentions")
@@ -234,13 +243,16 @@ if run_offline == 0:
 				else:
 					answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
 				
-			f2.write(answer.encode('utf-8') + "\n")
+
 			answer = "@" + tweet.user.screen_name + " " + answer
 			if run_offline == 0:
 				# post answer, fav original tweet
 				api.update_status(answer,tweet.id)
 				api.create_favorite(tweet.id)
-
+				try:
+					f2.write(answer + "\n")
+				except:
+					print("f2.write error")
 
 		# clean up text and add to archive
 		text = clean_tweet(tweet.full_text)
