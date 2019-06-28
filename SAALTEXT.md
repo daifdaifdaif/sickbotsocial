@@ -1,4 +1,4 @@
-*dieser saaltext befindet sich noch in arbeit*
+*>>>>> dieser saaltext befindet sich noch in arbeit*
 
 # sickbotsocial
 
@@ -12,7 +12,7 @@ Die Willkürlichkeit des Markov-Prozesses führt zu einer Unmenge an Resultaten,
 
 ### Theorie
 
-*hier etwas zu algorithmisch generierten texten, kreativität als reinen selektionsprozess, "alles ist ein remix" einfügen*
+*>>>>> hier etwas zu algorithmisch generierten texten, kreativität als reinen selektionsprozess, "alles ist ein remix" einfügen*
 
 ### Technische Details
 
