@@ -1,4 +1,4 @@
-`dieser saaltext befindet sich noch in arbeit`
+*dieser saaltext befindet sich noch in arbeit*
 
 # sickbotsocial
 
@@ -10,6 +10,10 @@ Als Korpus dient der Twitter-Account von [Jessica Jurassica](http://www.twitter.
 
 Die Willkürlichkeit des Markov-Prozesses führt zu einer Unmenge an Resultaten, deren künstlerischer/ästhetischer Wert stark variiert. Eine Selektion dieser Resultate wird durch User-Interaktionen auf Twitter durchgeführt. Favs und Retweets eines Bot-Tweets lösen einen Crosspost des jeweiligen Textes auf dem Instagram-Profil von Bot aus (`tw_favs_to_insta.py`). Twitter-User übernehmen so eine kuratierende Rolle und gestalten eines der Endprodukte (Instagram) aktiv mit. 
 
+### Theorie
+
+*hier etwas zu algorithmisch generierten texten, kreativität als reinen selektionsprozess, "alles ist ein remix" einfügen*
+
 ### Technische Details
 
-Der auf Github abgelegte Quellcode entspricht der deployed version, die auf einem Raspberry Pi 3b ausgeführt wird. Der Quellcode ist mehrheitlich gut dokumentiert und sollte selbsterklärend sein.
+Der auf Github abgelegte Quellcode entspricht der deployed version, die auf einem Raspberry Pi 3b ausgeführt wird. 
