@@ -54,6 +54,6 @@ runs on python 2.7
 - [`markovify==0.7.1`](https://github.com/jsvine/markovify/)
 - [`Pillow==6.0.0`](https://github.com/python-pillow/Pillow)
 
-#### additional requirements for instagram functionality
+#### additional requirements for instagram functionality:
 - [`Instagram API`](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php, update config.py with paths and enter credentials)
 
