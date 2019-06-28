@@ -30,8 +30,8 @@ def get_user_ids_of_post_likes(post_id):
 
 
 # READING PRINTED TWEETS
-f = open(printed_tweets_file, "rw+")
-printed_tweets = f.readlines()
+f3 = open(printed_tweets_file, "rw+")
+printed_tweets = f3.readlines()
 
 f2 = open(corpus_file,"a")
 
@@ -87,14 +87,18 @@ for tweet in tweets:
 			main_print_function(text, post=post_img)
 			
 			# write to printed tweets
-			f.write(text+"\n")
+			f3.write(text+"\n")
 			
 			print("printed tweet")
 			
 			# add faveds tweet to corpus file, enables weightening by user likes
 			
 			text = clean_tweet(tweet.full_text)
-			f2.write(text.encode('utf-8') + "\n")
+			
+			try:
+				f2.write(text.encode('utf-8') + "\n")
+			except:
+				print("f2 write error")
 			
 			# check for weighted accounts and write again to file if true
 			
@@ -102,7 +106,10 @@ for tweet in tweets:
 			if faves_by != False:
 				if any(ext in faves_by for ext in weighted_user_ids):
 					print("found fav by weightened user")
-					f2.write(text.encode('utf-8') + "\n")
+					try:
+						f2.write(text.encode('utf-8') + "\n")
+					except:
+						print("f2 write error")
 
 			
 			amt_posted += 1	
@@ -112,5 +119,5 @@ for tweet in tweets:
 
 			
 
-f.close()
+f3.close()
 f2.close()
