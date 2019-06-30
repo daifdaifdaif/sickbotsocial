@@ -266,9 +266,9 @@ def main_print_function(tweet=None, story=True, post=False):
 		# INSTA UPLOAD
 		
 		if story:
-			os.system("php7.0 " + script_story + " "+ file_story + "> /dev/null")
+			os.system("php7.2 " + script_story + " "+ file_story + "> /dev/null")
 		if post:
-			os.system("php7.0 " + script_post + " "+ file + " \""+ tweet +" #sickbotsocial #dieyungenhurendothiv\" > /dev/null")
+			os.system("php7.2 " + script_post + " "+ file + " \""+ tweet +" #sickbotsocial #dieyungenhurendothiv\" > /dev/null")
 		
 
 

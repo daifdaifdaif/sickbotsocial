@@ -13,3 +13,6 @@ config.py
 config.pyc
 id.txt
 pull-github.sh
+build/
+dist/
+sickbotsocial.egg-info/
