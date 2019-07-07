@@ -12,7 +12,7 @@ from print_quote import *
 
 
 # GLOBALS
-posts_to_scan = 50
+posts_to_scan = 75
 
 
 # FUNCTION: GET USER IDs OF PEOPLE WHO FAVED A TWEET
@@ -34,6 +34,8 @@ f3 = open(printed_tweets_file, "rw+")
 printed_tweets = f3.readlines()
 
 f2 = open(corpus_file,"a")
+
+f4 = open(archive_file,"a")
 
 #TWITTER LOGIN
 
@@ -99,6 +101,12 @@ for tweet in tweets:
 				f2.write(text.encode('utf-8') + "\n")
 			except:
 				print("f2 write error")
+			
+			
+			try:
+				f4.write(text.encode('utf-8') + "\n")
+			except:
+				print("f4.write error")
 			
 			# check for weighted accounts and write again to file if true
 			

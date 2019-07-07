@@ -66,7 +66,7 @@ while i < j:
 
 		f.write(tweet + "\n")
 		try:
-			f2.write(answer + "\n")
+			f2.write(tweet + "\n")
 		except:
 			print("f2.write error")
 		
@@ -139,11 +139,7 @@ if run_offline == 0:
 					
 					api.update_status(answer,tweet.id)
 					api.create_favorite(tweet.id)
-					
-					try:
-						f2.write(answer + "\n")
-					except:
-						print("f2.write error")
+
 	
 
 		# clean up text and add to archive
@@ -153,6 +149,12 @@ if run_offline == 0:
 			f = open(corpus_file,"a")
 			f.write(text.encode('utf-8') + "\n")
 			f.close()
+		
+				
+		try:
+			f2.write(text.encode('utf-8') + "\n")
+		except:
+			print("f2.write error")
 
 
 	# save id of last checked tweet
@@ -163,55 +165,6 @@ if run_offline == 0:
 		
 	
 	
-## CHECK MY OWN TWEETS FOR TRIGGER WORDS
-	
-	print("reading tweets by me")
-	tweets = api.user_timeline(user_id=bot_id, count=3, tweet_mode='extended')
-	print("found " + str(len(tweets)) + " new tweets by @sickbotsocial")
-
-
-	for tweet in tweets:
-
-		# ANSWER TO MY TWEETS ABOUT ME <3 
-	
-		if react_to_myself == 1:
-			
-			# check for trigger words
-			
-			
-			if any(ext in tweet.full_text for ext in trigger_words):
-	
-
-				# generate answer
-				answer = None
-				while answer == None:
-				
-					length = randint(min_words,max_words)
-					overlap = random.uniform(min_overlap,max_overlap)
-					
-					# weighted random to start answer with defined words
-					rand_sel = randint(0,9)
-					if rand_sel == 0:
-					
-						answer = text_model.make_sentence_with_start("bot", strict=False, max_words=length, max_overlap_ratio=overlap)
-						
-					elif rand_sel == 1:
-					
-						answer = text_model.make_sentence_with_start("ich", strict=False, max_words=length, max_overlap_ratio=overlap)		
-						
-					else:
-						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
-				
-				
-				answer = "@sickbotsocial " + answer
-				if run_offline == 0:
-					new_tweet = api.update_status(answer,tweet.id)
-					# api.create_favorite(tweet.id)
-					# api.retweet(new_tweet.id)
-				try:
-					f2.write(answer + "\n")
-				except:
-					print("f2.write error")
 
 ### GET MENTIONS
 	print("reading mentions")
@@ -249,10 +202,6 @@ if run_offline == 0:
 				# post answer, fav original tweet
 				api.update_status(answer,tweet.id)
 				api.create_favorite(tweet.id)
-				try:
-					f2.write(answer + "\n")
-				except:
-					print("f2.write error")
 
 		# clean up text and add to archive
 		text = clean_tweet(tweet.full_text)
@@ -261,6 +210,10 @@ if run_offline == 0:
 			f = open(corpus_file,"a")
 			f.write(text.encode('utf-8') + "\n")
 			f.close()
+			try:
+				f2.write(text.encode('utf-8') + "\n")
+			except:
+				print("f2.write error")
 
 
 	# save id of last checked tweet
