@@ -4,7 +4,7 @@
 
 sickbotsocial (Jessica 🤖 Jurassica) ist eine interaktive und selbstreferenzielle Medienkunstinstallation auf Twitter, Instagram und [dieyungenhuren.hiv/sickbotsocial](http://www.dieyungenhuren.hiv/sickbotsocial/index2.php). 
 
-Das Script `jj-quote.py` generiert stündlich neue Tweets (Texte kürzer als 280 Zeichen) anhand eines [Random Walk](https://de.wikipedia.org/wiki/Random_Walk) durch gewichtete [Markov-Ketten](https://de.wikipedia.org/wiki/Markow-Kette). Die Parameter des Markov-Skripts werden dabei laufend zufällig verändert, so dass Bot Texte generiert, die kohärent, oder auch wahllos zusammengewürfelt wirken können. 
+Das Script `jj-quote.py` generiert regelmässig neue Tweets (Texte kürzer als 280 Zeichen) anhand eines [Random Walk](https://de.wikipedia.org/wiki/Random_Walk) durch gewichtete [Markov-Ketten](https://de.wikipedia.org/wiki/Markow-Kette). Die Parameter des Markov-Skripts werden dabei laufend zufällig verändert, so dass Bot Texte generiert, die kohärent, oder auch wahllos zusammengewürfelt wirken können. 
 
 Als Korpus dient der Twitter-Account von [Jessica Jurassica](http://www.twitter.com/sickbutsocial), deren neue Tweets bei jeder Durchführung des Bot-Skripts dem Korpus hinzugefügt werden. Des Weiteren werden die durch Bot generierten Texte ebenfalls dem Korpus hinzugefügt. Da das Volumen an Bot-Tweets jenes der Tweets von Jessica Jurassica übertrifft, generiert Bot Texte, die zu einem grossen Teil auf den bisher generierten Texten basieren.
 
