@@ -63,7 +63,8 @@ def mixup_img(img):
 		h1 = random.randint(650,1000)
 		h2 = random.randint(650,1000)
 		img = img.crop((w1,w2,h1,h2))
-		img = img.resize((1080,1080))
+	
+	img = img.resize((1080,1080))
 	
 	return(img)
 
