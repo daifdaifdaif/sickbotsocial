@@ -1,5 +1,7 @@
-# set to 1 to disable online functionality and just generate text + picture
-run_offline=1
+# GLOBALS
+send_tweets = True  # whether to send tweets to API
+check_tweets = True  # whether to check tweets by JJ
+send_to_insta = True  # whether to post on insta
 
 #############
 ### PATHS ###
