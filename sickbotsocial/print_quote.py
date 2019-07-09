@@ -270,7 +270,7 @@ def main_print_function(tweet=None, story=True, post=False):
         if story:
             os.system("php7.2 " + script_story + " " + file_story)
         if post:
-            os.system("php7.2 " + script_post + " " + file + " \"" + tweet +
+            os.system("php7.2 " + script_post + " " + file + " \"" + apache_string +
                       " #sickbotsocial #dieyungenhurendothiv\"")
 
 
