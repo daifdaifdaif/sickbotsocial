@@ -8,11 +8,11 @@ print_quote.pyc
 printquote-log.txt
 jj-log.txt
 printed.txt
-chat-quotes.txt
 config.py
 config.pyc
 id.txt
-pull-github.sh
 build/
 dist/
 sickbotsocial.egg-info/
+font/
+.vscode

@@ -1,223 +1,189 @@
-import markovify
-import json
-import sys
-import re
-
 from config import *
 from print_quote import *
 from clean_tweet import clean_tweet
 
-
+import markovify
+import sys
+import re
 import random
 from random import randint
-
 import tweepy
 
 
-# LOAD CORPUS TEXT FILE
-with open (corpus_file) as f:
-	corpus_text = f.read()
+def generate_quote(starts_with=None):
+    # create text model
+    k = randint(markov_state_size_range[0], markov_state_size_range[1])
+    text_model = markovify.NewlineText(corpus_text, state_size=k)
+    tweet = None
+    length = randint(min_length, max_length)
+    overlap = random.uniform(min_overlap, max_overlap)
+    if starts_with is None:
+        while tweet is None:
+            tweet = text_model.make_short_sentence(
+                length, max_overlap_ratio=overlap)
+    else:
+        while tweet is None:
+            tweet = text_model.make_sentence_with_start(
+                starts_with, strict=False, max_words=length, max_overlap_ratio=overlap)
+
+    return tweet
 
 
-#TWITTER LOGIN
-if run_offline == 0:
-	print("logging in")	
-	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)    
-	auth.set_access_token(access_token, access_secret)
-	api = tweepy.API(auth)
-
-	print("logged in")
-
-
-# SET AMOUNT OF TWEETS TO GENERATE
-if run_offline == 0:
-	j = randint(1,max_tweet_amount)
-else:
-	j = 5
-
-
-# open files to write to
-f = open(corpus_file,"a")
-f2 = open(archive_file,"a")
-
-# GENERATE TWEETS
-i = 0
-while i < j:
-		
-	# create text model
-	k = randint(markov_state_size_range[0],markov_state_size_range[1])	
-	text_model = markovify.NewlineText(corpus_text, state_size=k)
-	
-
-	# generate until we've got a new tweet
-	tweet = None
-	while tweet == None:
-		length = randint(min_length,max_length)
-		overlap = random.uniform(min_overlap,max_overlap)
-		tweet = text_model.make_short_sentence(length,max_overlap_ratio=overlap)
-	
-	
-	if run_offline == 0:
-		# online -> post tweet
-		api.update_status(tweet)
-		print("Tweeted: " + tweet + " (Generated with Length: " + str(length) + " | State Size: " + str(k) + " | Overlap: " + str(overlap) + ")")
-		
-		#ADD TO CORPUS
-
-		f.write(tweet + "\n")
-		try:
-			f2.write(tweet + "\n")
-		except:
-			print("f2.write error")
-		
-	else:
-		# we're offline -> only output the tweet
-		print(tweet)
-		main_print_function(tweet, story=False, post=False)
-	i += 1
-	
-f.close();
+def post_tweet(text, answer_id=None):
+    if answer_id:
+        api.update_status(text, tweet.id)
+        api.create_favorite(tweet.id)
+    else:
+        api.update_status(text)
+    # clean up text and add to archive
+    text = clean_tweet(text)
+    f = open(corpus_file, "a")
+    f.write(text.encode('utf-8') + "\n")
+    f.close()
+    try:
+        f2.write(text.encode('utf-8') + "\n")
+    except:
+        print("f2.write error")  
 
 
+def check_jj_tweets():
+    print("reading tweets")
+    tweets = api.user_timeline(user_id=jj_user_id, count=20,
+                               tweet_mode='extended',  include_rts=1, since_id=last_id)
 
-# INTERACT WITH JJ TWEETS
-if run_offline == 0:
-	
-	# check last checked id
-	f = open(id_file,"r+")
-	last_id = f.readline()
-	f.close()
-	f = open(id_mentions_file, "r+")
-	last_id_mentions = f.readline()
-	f.close()
+    for tweet in tweets:
 
-	print("reading tweets")
-	tweets = api.user_timeline(user_id=jj_user_id, count=20, tweet_mode='extended',  include_rts=1 , since_id=last_id)
-	print("found " + str(len(tweets)) + " new tweets by @sickbutsocial")
+        # interact with jj tweets
 
+        if react_to_jj:
 
-	for tweet in tweets:
+            # check for trigger words
+            if tweet.in_reply_to_screen_name is None:
+                reply_check = "none"
+            else:
+                reply_check = tweet.in_reply_to_screen_name
 
-		# interact with jj tweets
-	
-		if react_to_jj == 1:
-			
-			# check for trigger words
-			
-			if tweet.in_reply_to_screen_name == None:
-				reply_check = "empty"
-			else:
-				reply_check = tweet.in_reply_to_screen_name
-			
-			if any(ext in tweet.full_text for ext in trigger_words) or any(ext in reply_check for ext in trigger_words):
-	
+            if any(ext in tweet.full_text for ext in trigger_words) or \
+                    any(ext in reply_check for ext in trigger_words):
 
-				# generate an answer
-				answer = None
-				while answer == None:
-				
-					length = randint(min_words,max_words)
-					overlap = random.uniform(min_overlap,max_overlap)
-					
-					
-					# weighted random: whether to start answer with defined words
-					rand_sel = randint(0,5)
-					if rand_sel == 0:
-					
-						answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)
-						
-					elif rand_sel == 1:
-					
-						answer = text_model.make_sentence_with_start("ich", strict=False, max_words=length, max_overlap_ratio=overlap)		
-						
-					else:
-						answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
-					
-				answer = "@sickbutsocial " + answer
-				if run_offline == 0:
-					# post answer, fav original tweet
-					
-					api.update_status(answer,tweet.id)
-					api.create_favorite(tweet.id)
+                print("Answering to tweet by " + tweet.user.screen_name + 
+                        " in reply to " + reply_check + ":" + tweet.full_text)
 
-	
+                # weighted random: whether to start answer with defined words
+                rand_sel = randint(0, 5)
+                if rand_sel == 0:
+                    answer = generate_quote("du")
+                elif rand_sel == 1:
+                    answer = generate_quote("ich")
+                else:
+                    answer = generate_quote()
 
-		# clean up text and add to archive
-		text = clean_tweet(tweet.full_text)
-	
-		if run_offline == 0:
-			f = open(corpus_file,"a")
-			f.write(text.encode('utf-8') + "\n")
-			f.close()
-		
-				
-		try:
-			f2.write(text.encode('utf-8') + "\n")
-		except:
-			print("f2.write error")
+                answer = "@sickbutsocial " + answer
+
+                if send_tweets:
+                    post_tweet(answer, tweet.id)
+
+    # save id of last checked tweet
+    if len(tweets) > 0:
+        f = open(id_file, "w")
+        f.write(str(tweets[0].id))
+        f.close()
 
 
-	# save id of last checked tweet
-	if len(tweets) > 0:
-		f = open(id_file,"w")
-		f.write(str(tweets[0].id))
-		f.close()
-		
-	
-	
+def check_mentions():
+    print("reading mentions")
+    tweets = api.mentions_timeline(
+        user_id=bot_id, count=10, tweet_mode='extended',  include_rts=1, since_id=last_id_mentions)
+    print("found " + str(len(tweets)) + " mentions")
 
-### GET MENTIONS
-	print("reading mentions")
+    for tweet in tweets:
 
-	tweets = api.mentions_timeline(user_id=bot_id, count=10, tweet_mode='extended',  include_rts=1 , since_id=last_id_mentions)
-	print("found " + str(len(tweets)) + " mentions")
+        # interact with mentions other than my own
+        print("Mentioned by " + tweet.user.screen_name + 
+              " / " + tweet.user.id_str + " :" + tweet.full_text)
+        if react_to_mentions == 1 and tweet.user.id_str != bot_id:
+            print("Reacting to tweet")
 
+            # weighted random: whether to start answer with defined words
+            rand_sel = randint(0, 3)
+            if rand_sel == 0:
+                answer = generate_quote("du")
+            else:
+                answer = generate_quote()
 
-	for tweet in tweets:
+            answer = "@" + tweet.user.screen_name + " " + answer
 
-		# interact with mentions other than my own
-	
-		if react_to_mentions == 1 and tweet.user.id_str != bot_id:
-		
-			# generate an answer
-			answer = None
-			while answer == None:
-			
-				length = randint(min_words,max_words)
-				overlap = random.uniform(min_overlap,max_overlap)
-				
-				
-				# weighted random: whether to start answer with defined words
-				rand_sel = randint(0,5)
-				if rand_sel == 0:
-				
-					answer = text_model.make_sentence_with_start("du", strict=False, max_words=length, max_overlap_ratio=overlap)	
-					
-				else:
-					answer = text_model.make_short_sentence(length,max_overlap_ratio=overlap)				
-				
+            if send_tweets:
+                post_tweet(answer, tweet.id)
 
-			answer = "@" + tweet.user.screen_name + " " + answer
-			if run_offline == 0:
-				# post answer, fav original tweet
-				api.update_status(answer,tweet.id)
-				api.create_favorite(tweet.id)
-
-		# clean up text and add to archive
-		text = clean_tweet(tweet.full_text)
-
-		if run_offline == 0:
-			f = open(corpus_file,"a")
-			f.write(text.encode('utf-8') + "\n")
-			f.close()
-			try:
-				f2.write(text.encode('utf-8') + "\n")
-			except:
-				print("f2.write error")
+    # save id of last checked tweet
+    if len(tweets) > 0:
+        f = open(id_mentions_file, "w")
+        f.write(str(tweets[0].id))
+        f.close()
 
 
-	# save id of last checked tweet
-	if len(tweets) > 0:
-		f = open(id_mentions_file,"w")
-		f.write(str(tweets[0].id))
-		f.close()
+if __name__ == "__main__":
+
+    # LOAD CORPUS TEXT FILE
+    with open(corpus_file) as f:
+        corpus_text = f.read()
+
+    # TWITTER LOGIN
+    if check_tweets:
+        print("logging in")
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_secret)
+        api = tweepy.API(auth)
+        print("logged in")
+        print("my id: " + bot_id)
+
+    # SET AMOUNT OF TWEETS TO GENERATE
+    j = randint(1, max_tweet_amount)
+
+    # open files to write to
+    f = open(corpus_file, "a")
+    f2 = open(archive_file, "a+")
+
+    # GENERATE TWEETS
+    i = 0
+    while i < j:
+        tweet = generate_quote()
+
+        if send_tweets:
+            post_tweet(tweet)
+
+        else:
+            # we're offline -> only output the tweet
+            print(tweet)
+            main_print_function(tweet, story=False, post=False)
+        i += 1
+
+    f.close()
+
+    # INTERACT WITH TWEETS
+    if check_tweets:
+
+        # check last checked tweet id
+        if os.path.exists(id_file):
+            f = open(id_file, "r+")
+            last_id = f.readline()
+            f.close()
+        else:  # if none: create last checked file
+            f = open(id_file, "w+")
+            f.write(str(0))
+            last_id = 1000
+            f.close()
+
+        if os.path.exists(id_mentions_file):
+            f = open(id_mentions_file, "r+")
+            last_id_mentions = f.readline()
+            f.close()
+        else:
+            f = open(id_mentions_file, "w+")
+            f.write(str(0))
+            last_id_mentions = 1000
+            f.close()
+
+        check_jj_tweets()
+        check_mentions()
