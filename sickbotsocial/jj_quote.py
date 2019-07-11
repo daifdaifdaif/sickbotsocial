@@ -125,9 +125,6 @@ def check_mentions():
 
 if __name__ == "__main__":
 
-    # LOAD CORPUS TEXT FILE
-    with open(corpus_file) as f:
-        corpus_text = f.read()
 
     # TWITTER LOGIN
     if check_tweets:
