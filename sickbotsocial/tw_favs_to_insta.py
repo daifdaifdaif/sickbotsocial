@@ -95,12 +95,12 @@ for tweet in tweets:
             text = clean_tweet(tweet.full_text)
 
             try:
-                f2.write(text.encode('utf-8') + "\n")
+                f2.write(text + "\n")
             except:
                 print("f2 write error")
 
             try:
-                f4.write(text.encode('utf-8') + "\n")
+                f4.write(text + "\n")
             except:
                 print("f4.write error")
 
@@ -111,7 +111,7 @@ for tweet in tweets:
                 if any(ext in faves_by for ext in weighted_user_ids):
                     print("found fav by weightened user")
                     try:
-                        f2.write(text.encode('utf-8') + "\n")
+                        f2.write(text + "\n")
                     except:
                         print("f2 write error")
 

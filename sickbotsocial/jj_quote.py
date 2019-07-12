@@ -30,18 +30,18 @@ def generate_quote(starts_with=None):
 
 
 def post_tweet(text, answer_id=None):
+    text = clean_tweet(text)    
     if answer_id:
         api.update_status(text, tweet.id)
         api.create_favorite(tweet.id)
     else:
         api.update_status(text)
     # clean up text and add to archive
-    text = clean_tweet(text)
     f = open(corpus_file, "a")
-    f.write(text.encode('utf-8') + "\n")
+    f.write(text + "\n")
     f.close()
     try:
-        f2.write(text.encode('utf-8') + "\n")
+        f2.write(text + "\n")
     except:
         print("f2.write error")  
 
