@@ -24,8 +24,10 @@ ______
 
 #### executable modules:
 - `jj-quote.py` - *main*
-- `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
 - `print_quote.py` - *overlays quote on image file*
+
+#### executable scripts:
+- `tw_favs_to_insta.py` - *checks for twitter interaction & triggers image generation*
 
 #### helper modules:
 - `clean_tweet.py` - *regex clean up, removes mentions, "RT" etc*
