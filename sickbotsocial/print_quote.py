@@ -40,6 +40,8 @@ y = 30
 
 def mixup_img(img):
     img = ImageEnhance.Brightness(img).enhance(0.9)
+    img = img.resize((1080, 1080))
+    width, height = img.size
     if random.random() < rotate:
         x = random.random()
         if x < 0.3:
@@ -59,13 +61,13 @@ def mixup_img(img):
         img = img.transpose(Image.FLIP_LEFT_RIGHT)
 
     if random.random() < crop:
-        w1 = random.randint(100, 450)
-        w2 = random.randint(100, 450)
-        h1 = random.randint(650, 1000)
-        h2 = random.randint(650, 1000)
-        img = img.crop((w1, w2, h1, h2))
+        w1 = random.randint(0, width/3)
+        w2 = random.randint(w1 + 30, width)
+        h1 = random.randint(0, height/3)
+        h2 = random.randint(h1 + 30, height)
+        img = img.crop((w1, h1, w2, h2))
+    
 
-    img = img.resize((1080, 1080))
 
     return(img)
 
@@ -144,13 +146,13 @@ def print_quote(s, template_file, story=True, font_size=90):
     # adjust font size to text length
     if len(s) > 100:
         if len(s) > 250:
-            font_size = font_size - 50
+            font_size = font_size - 55
         elif len(s) > 200:
-            font_size = font_size - 40
+            font_size = font_size - 45
         elif len(s) > 150:
-            font_size = font_size - 30
+            font_size = font_size - 35
         else:
-            font_size = font_size - 20
+            font_size = font_size - 25
 
     # wrap text
     content = textwrap.wrap(s, width=chars_per_line, break_long_words=False)
@@ -194,7 +196,7 @@ def print_quote(s, template_file, story=True, font_size=90):
 
     # create files to post
     if story:
-        img2 = Image.new("RGB", (1080, 1920), color='white')
+        img2 = Image.new("RGB", (1080, 1920), color='black')
         img2.paste(img, (0, 420))
         img2.save(out_file_story)
     img.save(out_file)
