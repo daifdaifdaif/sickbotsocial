@@ -3,6 +3,7 @@
 
 import textwrap
 import random
+from random import randint
 
 from config import *
 from clean_tweet import clean_tweet
@@ -18,16 +19,8 @@ import ftplib
 
 from PIL import Image, ImageFont, ImageDraw, ImageFilter, ImageEnhance
 
-
-import re
-
 import markovify
 import json
-import sys
-import re
-
-import random
-from random import randint
 
 
 # GLOBALS
