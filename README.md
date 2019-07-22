@@ -44,7 +44,7 @@ multiple parameters can be edited in `config.py`. online functionality (reading 
 4. *add .jpg images to folder `insta-pics/` (optional)*
 5. run `python sickbotsocial/jj-quote.py`
 
-quotes are output in terminal. created image files are found in the `output` directory.
+if online functionality is disabled, quotes are directly output in the terminal window. created image files are found in the `output` directory.
 
 _________
 
