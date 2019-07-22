@@ -36,13 +36,13 @@ _________
 
 
 #### config & usage:
-multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set `run_offline=0` to enable). twitter API keys and an instagram account are necessary for these features. the supplied corpus file isn't up to date (27.11.18), please pull all the newer Jessica Jurassica tweets by yourself.
+multiple parameters can be edited in `config.py`. online functionality (reading new tweets, tweeting, crossposting to instagram) is disabled per default (set first three variables in `config.py` to change this). twitter API keys and an instagram account are necessary for these features. the supplied corpus file isn't up to date (27.11.18), please pull all the newer Jessica Jurassica tweets by yourself or use twitter API key and let `tw_favs_to_insta.py` pull the tweets for you.
 
 1. clone github repo
 2. run install: `python setup.py install`
 3. setup `config.py` file (add path to font file `font_file=""`)
 4. *add .jpg images to folder `insta-pics/` (optional)*
-5. run `cd sickbotsocial && python jj-quote.py`
+5. run `python sickbotsocial/jj-quote.py`
 
 quotes are output in terminal. created image files are found in the `output` directory.
 
