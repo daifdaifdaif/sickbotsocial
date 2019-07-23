@@ -33,7 +33,6 @@ y = 30
 
 def mixup_img(img):
     img = ImageEnhance.Brightness(img).enhance(0.9)
-    img = img.resize((1080, 1080))
     width, height = img.size
     if random.random() < rotate:
         x = random.random()
@@ -60,6 +59,7 @@ def mixup_img(img):
         h2 = random.randint(h1 + 30, height)
         img = img.crop((w1, h1, w2, h2))
     
+    img = img.resize((1080, 1080))    
 
 
     return(img)
