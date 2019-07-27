@@ -59,3 +59,6 @@ runs on python 2.7
 #### additional requirements for instagram functionality:
 - [`Instagram API`](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php, update config.py with paths and enter credentials)
 
+#### additional tools:
+- [`instaloader`](https://instaloader.github.io/) (used to update library of instagram pics)
+

@@ -57,7 +57,7 @@ trigger_words = ["bot", "algorith"]
 
 # CORPUS FILES
 # these get written to by the bot with its own tweets
-corpus_file = my_path + "/../corpus/jj-nomention-bot.txt"
+corpus_file = my_path + "/../corpus/jj-nomention.txt"
 with open(corpus_file) as f:
     corpus_text = f.read()
 
