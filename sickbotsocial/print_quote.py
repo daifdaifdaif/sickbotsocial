@@ -53,11 +53,17 @@ def mixup_img(img):
         img = img.transpose(Image.FLIP_LEFT_RIGHT)
 
     if random.random() < crop:
-        w1 = random.randint(0, width/3)
-        w2 = random.randint(w1 + 30, width)
-        h1 = random.randint(0, height/3)
-        h2 = random.randint(h1 + 30, height)
-        img = img.crop((w1, h1, w2, h2))
+        try:
+            w1 = random.randint(0, width/3)
+            h1 = random.randint(0, height/3)
+            max_edge_pos = min((width-w1),(height-h1))
+            edge_size = random.randint(30, max_edge_pos)
+            w2 = w1 + edge_size
+            h2 = h1 + edge_size
+            img = img.crop((w1, h1, w2, h2))
+        except:
+            print("failure during cropping")
+
     
     img = img.resize((1080, 1080))    
 
