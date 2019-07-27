@@ -11,18 +11,26 @@ import tweepy
 
 
 def generate_quote(starts_with=None):
+
     # create text model
     k = randint(markov_state_size_range[0], markov_state_size_range[1])
     text_model = markovify.NewlineText(corpus_text, state_size=k)
+
+    
     tweet = None
-    length = randint(min_length, max_length)
-    overlap = random.uniform(min_overlap, max_overlap)
     if starts_with is None:
         while tweet is None:
+            # set random parameters to generate
+            length = randint(min_length, max_length)
+            overlap = random.uniform(min_overlap, max_overlap)
+
             tweet = text_model.make_short_sentence(
                 length, max_overlap_ratio=overlap)
     else:
         while tweet is None:
+            # set random parameters to generate
+            length = randint(min_length, max_length)
+            overlap = random.uniform(min_overlap, max_overlap)
             tweet = text_model.make_sentence_with_start(
                 starts_with, strict=False, max_words=length, max_overlap_ratio=overlap)
 
@@ -172,11 +180,12 @@ if __name__ == "__main__":
             last_id = 1000
             f.close()
 
+        # check last checked mentions id file
         if os.path.exists(id_mentions_file):
             f = open(id_mentions_file, "r+")
             last_id_mentions = f.readline()
             f.close()
-        else:
+        else: # if none: create last checked file
             f = open(id_mentions_file, "w+")
             f.write(str(0))
             last_id_mentions = 1000
