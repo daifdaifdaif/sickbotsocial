@@ -52,6 +52,10 @@ try:
         user_id=bot_id, count=posts_to_scan, tweet_mode='extended')
     print("log in worked")
     print("reading tweets")
+    
+    # reverse list
+    tweets.reverse()
+    
 except:
     print("problem reading tweets. enter credentials in config.py and check your twitter API key.")
 
