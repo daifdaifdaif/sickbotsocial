@@ -40,8 +40,11 @@ def generate_quote(starts_with=None):
 def post_tweet(text, answer_id=None):
     text = clean_tweet(text)    
     if answer_id:
-        api.update_status(text, tweet.id)
-        api.create_favorite(tweet.id)
+        api.update_status(text, answer_id, auto_populate_reply_metadata=True)
+        try:
+            api.create_favorite(answer_id)
+        except:
+            print("couldn't fav tweet")
     else:
         api.update_status(text)
     # clean up text and add to archive
@@ -107,7 +110,8 @@ def check_mentions():
     for tweet in tweets:
 
         # interact with mentions other than my own
-        print("Mentioned by " + tweet.user.screen_name + 
+        username = tweet.user.screen_name.encode('utf-8')
+        print("Mentioned by " + username + 
               " / " + tweet.user.id_str + " :" + tweet.full_text)
         if react_to_mentions == 1 and tweet.user.id_str != bot_id:
             print("Reacting to tweet")
@@ -119,8 +123,8 @@ def check_mentions():
             else:
                 answer = generate_quote()
 
-            answer = "@" + tweet.user.screen_name + " " + answer
-
+            answer = "@" + username + " " + answer
+            print(answer)
             if send_tweets:
                 post_tweet(answer, tweet.id)
 
