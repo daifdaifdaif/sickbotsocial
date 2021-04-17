@@ -15,7 +15,7 @@ virtual art performance /////////
 *searchable archive of generated tweets and images: [images](http://www.dieyungenhuren.hiv/sickbotsocial/img/) | [tweets](http://www.dieyungenhuren.hiv/sickbotsocial/txt/)*
 
 ______
-'upload to instagram is broken at the moment, I'd suggest taking a look at instagram-private-api, if you want to copy this project.'
+`the implementation of the instagram API in this repository is broken. I suggest taking a look at instagram-private-api, if you want to copy this project.`
 ______
 
 twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
@@ -56,8 +56,6 @@ runs on python 2.7
 - [`markovify==0.7.1`](https://github.com/jsvine/markovify/)
 - [`Pillow==6.0.0`](https://github.com/python-pillow/Pillow)
 
-#### additional requirements for instagram functionality:
-- [`Instagram API`](https://github.com/mgp25/Instagram-API) (clone into folder instagram-php, update config.py with paths and enter credentials)
 
 #### additional tools:
 - [`instaloader`](https://instaloader.github.io/) (used to update library of instagram pics)
