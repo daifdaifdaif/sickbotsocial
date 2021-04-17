@@ -15,6 +15,8 @@ virtual art performance /////////
 *searchable archive of generated tweets and images: [images](http://www.dieyungenhuren.hiv/sickbotsocial/img/) | [tweets](http://www.dieyungenhuren.hiv/sickbotsocial/txt/)*
 
 ______
+'upload to instagram is broken at the moment, I'd suggest taking a look at instagram-private-api, if you want to copy this project.'
+______
 
 twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
 
