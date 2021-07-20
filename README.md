@@ -18,8 +18,11 @@ ______
 
 twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) and crossposts user-curated tweets to instagram, remixing existing instagram-content by Jessica Jurassica. it's designed to slowly replace Jessica Jurassica on social media.
 
-it generates tweets by markov-chains, its corpus constisting of all of Jessica Jurassicas tweets and all of its own, previously generated tweets as well. therefore, after ~10k tweets, it started to emancipate itself from its influence and recursively became its own inspiration. twitter-users, who interact with the tweets of this bot, act as curators: if any tweet gets a predifined amount of "attention", it will get crossposted to instagram. the previous instagram-posts of Jessica Jurassica serve as an image library, which gets transformed and remixed, and then used as backgrounds for the tweets.
+it generates tweets based on all of Jessica Jurassicas tweets and all of its own, previously generated tweets as well. therefore, after ~10k tweets, it started to emancipate itself from its influence and recursively became its own inspiration. twitter-users, who interact with the tweets of this bot, act as curators: if any tweet gets a predifined amount of "attention", it will get crossposted to instagram. the previous instagram-posts of Jessica Jurassica serve as an image library, which gets transformed and remixed, and then used as backgrounds for the tweets.
 
+______
+
+text generation based on markov chains. image remixing done with pillow. twitter-access via tweepy. instagram-access via instagram-private-api.
 ______
 `the implementation of the instagram API in this repository is broken. the bot locally runs using instagram-private-API now. I suggest taking a look at instagram-private-api, if you want to copy this project. text- or twitter-only implementation is still possible with this repository, image generation as well.`
 ______
