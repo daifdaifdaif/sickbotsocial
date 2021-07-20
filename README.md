@@ -15,11 +15,13 @@ virtual art performance /////////
 *searchable archive of generated tweets and images: [images](http://www.dieyungenhuren.hiv/sickbotsocial/img/) | [tweets](http://www.dieyungenhuren.hiv/sickbotsocial/txt/)*
 
 ______
-`the implementation of the instagram API in this repository is broken. I suggest taking a look at instagram-private-api, if you want to copy this project.`
+
+twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) and crossposts user-curated tweets to instagram, remixing existing instagram-content by Jessica Jurassica. it's designed to slowly replace Jessica Jurassica on social media.
+
+it generates tweets by markov-chains, its corpus constisting of all of Jessica Jurassicas tweets and all of its own, previously generated tweets as well. therefore, after ~10k tweets, it started to emancipate itself from its influence and recursively became its own inspiration. twitter-users, who interact with the tweets of this bot, act as curators: if any tweet gets a predifined amount of "attention", it will get crossposted to instagram. the previous instagram-posts of Jessica Jurassica serve as an image library, which gets transformed and remixed upon usage.
+
 ______
-
-twitter bot that generates tweets in the style of [Jessica Jurassica](http://www.twitter.com/sickbutsocial/) using markov-chains. any user interaction with the tweets by this bot will make him crosspost them to instagram with a picture taken and edited from JJs insta-feed.
-
+`the implementation of the instagram API in this repository is broken. I suggest taking a look at instagram-private-api, if you want to copy this project. text- or twitter-only implementation is still possible, image generation as well.`
 ______
 
 #### executable modules:
@@ -60,3 +62,6 @@ runs on python 2.7
 #### additional tools:
 - [`instaloader`](https://instaloader.github.io/) (used to update library of instagram pics)
 
+_________
+
+written by DAIF & Jessica Jurassica, 2019-2021. #dieyungenhurendothiv
